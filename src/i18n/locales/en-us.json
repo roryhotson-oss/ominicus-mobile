@@ -463,6 +463,10 @@
       "unmarked_as_best_answer": "Unmarked as best answer",
       "websearch": {
         "fetch_complete": "Completed {{count}} searches..."
+      },
+      "website_read_failed": {
+        "content": "Could not read the website content. Check your connection and the URL, then try again.",
+        "title": "Website Read Failed"
       }
     },
     "models": {
@@ -1045,6 +1049,13 @@
       "title": {
         "label": "Topic",
         "recent": "Recent Topics"
+      },
+      "token_usage": {
+        "input": "Input",
+        "menu": "Token Usage",
+        "output": "Output",
+        "title": "Token Usage",
+        "total": "Total"
       },
       "unpin": "Unpin Topic"
     },

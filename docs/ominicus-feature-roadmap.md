@@ -19,10 +19,10 @@ This document compares Ominicus (this repo, mobile) against the [Cherry Studio d
 
 ### Tier 1 — High value, low risk (fits current architecture)
 
-1. **Topic pinning** — `topics` table has no `is_pinned` column. Add a nullable boolean column (Drizzle migration), a pin action on `TopicScreen` rows, and sort pinned-first in the topic list. Desktop already supports pinned topics, and LAN backup of topics stays compatible because the desktop schema already carries the field.
+1. **Topic pinning** — ✅ _Implemented._ `isPinned` column, context-menu pin/unpin, Pinned group in the topic list; carried through backup/restore automatically.
 2. **Notes & Collections (mobile capture)** — desktop roadmap item. Start with a simple `notes` Drizzle table + a Notes tab in the drawer. Voice-to-note via the existing speech-recognition integration is a natural mobile-first extension.
 3. **Quick actions on selected text** — desktop has a Selection Assistant. On mobile, expose Ominicus in the iOS Share Sheet / Android text-selection menu so users can send selected text to a chosen assistant without opening the app.
-4. **Per-topic token cost summary** — `messages.usage` is already persisted; aggregate it per topic and show a cost row in `TopicScreen` settings using configurable per-model pricing (desktop has this in its model settings).
+4. **Per-topic token cost summary** — ✅ _Partially implemented._ Token Usage action in the topic context menu aggregates persisted `messages.usage` per topic (input/output/total). Per-model pricing for cost display is still open.
 
 ### Tier 2 — Medium effort
 
@@ -36,6 +36,32 @@ This document compares Ominicus (this repo, mobile) against the [Cherry Studio d
 9. **Mini-app / plugin system** — desktop roadmap; would need a sandboxed JS runtime (e.g. WebView bridge) and a plugin manifest + market screen next to the MCP market.
 10. **Widgets & system integration** — iOS/Android home-screen widget for "new chat with assistant X" and continued conversation from notifications.
 11. **Multi-window / split view (tablet)** — `supportsTablet` is already true; adopt a two-pane chat layout for iPad/Android tablets to mirror desktop's multi-window support.
+
+## Newelle Feature Analysis
+
+[Newelle](https://github.com/qwersyk/Newelle) (GTK/Linux assistant, GPL-3) has several features worth porting. Assessed for the mobile/Expo stack:
+
+| Newelle feature                                     | Ported?               | Notes                                                                                                                                                                               |
+| --------------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Website reading (`#https://` prefix)                | ✅ Implemented        | `WebsiteReaderService` — send `#https://example.com your question` in chat; the page is fetched, stripped to text, and prepended to the prompt with a 15s timeout and 100k char cap |
+| Terminal command execution                          | ❌ Not applicable     | No shell access on iOS; Android would need privileged apps. Skip                                                                                                                    |
+| Local models (llama.cpp/Ollama)                     | ⚠️ Partial fit        | The aiCore can already point at a LAN Ollama/LM Studio endpoint via a custom OpenAI-compatible provider — no new code needed, document it instead                                   |
+| Long-term memory                                    | 🔜 Roadmap            | Summarize past topics into a per-assistant memory note injected into prompts                                                                                                        |
+| Scheduled tasks                                     | 🔜 Roadmap            | Requires background execution (expo-task-manager); pairs with the existing ReminderTools                                                                                            |
+| Profile manager                                     | 🔜 Roadmap            | Maps to preference presets; medium effort                                                                                                                                           |
+| Chat branching                                      | 🔜 Roadmap            | Message-level regenerate already exists; full branching needs a fork-map UI                                                                                                         |
+| Chat folders                                        | ✅ Covered by pinning | Pinning covers the primary need; folders can build on the same pattern later                                                                                                        |
+| Extensions/skills                                   | 🔜 Roadmap            | Equivalent to the desktop mini-app/plugin system (Tier 3)                                                                                                                           |
+| Voice mode / call mode / wakeword                   | ⚠️ Exists             | App already has speech-to-text and TTS; continuous conversation mode is the gap                                                                                                     |
+| Multichat                                           | ✅ Exists             | Multi-model mentions already supported                                                                                                                                              |
+| Dynamic context management (summarize old messages) | 🔜 Roadmap            | High value: prune/summarize old blocks before sending to fit context windows                                                                                                        |
+| Image generation                                    | ✅ Exists             | GenerateImage response plumbing already present                                                                                                                                     |
+
+### Implemented in this pass
+
+- **Website reading** (`#https://` prefix, Newelle-style) — `src/services/WebsiteReaderService.ts`, wired into the send flow in `useMessageSend` with error dialog and input restore; unit-tested URL extraction; localized error strings in 5 languages
+- **Per-topic token usage** — `getTopicTokenUsage` aggregation query in `db/queries/messages.queries.ts`, exposed via `messageDatabase`, shown from the topic context menu
+- **Topic pinning** — see Tier 1 above
 
 ## Desktop Compatibility (must keep)
 

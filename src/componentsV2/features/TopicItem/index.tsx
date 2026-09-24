@@ -13,6 +13,7 @@ import { ExportOptionsContent } from '@/componentsV2/features/TopicItem/ExportOp
 import { RenameTopicContent } from '@/componentsV2/features/TopicItem/RenameTopicContent'
 import XStack from '@/componentsV2/layout/XStack'
 import YStack from '@/componentsV2/layout/YStack'
+import { messageDatabase } from '@/database'
 import { useAssistant } from '@/hooks/useAssistant'
 import { useExport } from '@/hooks/useExport'
 import { useTheme } from '@/hooks/useTheme'
@@ -23,7 +24,17 @@ import type { Topic } from '@/types/assistant'
 import type { HomeNavigationProps } from '@/types/naviagate'
 import { storage } from '@/utils'
 
-import { Check, CheckSquare, Download, Edit3, Pin, PinOff, Sparkles, Trash2 } from '../../icons/LucideIcon'
+import {
+  Check,
+  CheckSquare,
+  CircleDollarSign,
+  Download,
+  Edit3,
+  Pin,
+  PinOff,
+  Sparkles,
+  Trash2
+} from '../../icons/LucideIcon'
 
 type TimeFormat = 'time' | 'date'
 
@@ -157,6 +168,19 @@ export const TopicItem: FC<TopicItemProps> = ({
     })
   }
 
+  const handleShowTokenUsage = async () => {
+    try {
+      const usage = await messageDatabase.getTopicTokenUsage(topic.id)
+      const format = (value: number) => value.toLocaleString()
+      presentDialog('info', {
+        title: t('topics.token_usage.title'),
+        content: `${t('topics.token_usage.input')}: ${format(usage.input)}\n${t('topics.token_usage.output')}: ${format(usage.output)}\n${t('topics.token_usage.total')}: ${format(usage.total)}`
+      })
+    } catch {
+      toast.show(t('common.error_occurred'))
+    }
+  }
+
   const handleGenerateName = async () => {
     try {
       setIsGeneratingName(true)
@@ -213,6 +237,12 @@ export const TopicItem: FC<TopicItemProps> = ({
       iOSIcon: 'rectangle.and.pencil.and.ellipsis',
       androidIcon: <Edit3 size={16} className="text-foreground" />,
       onSelect: handleRename
+    },
+    {
+      title: t('topics.token_usage.menu'),
+      iOSIcon: 'dollarsign.circle',
+      androidIcon: <CircleDollarSign size={16} className="text-foreground" />,
+      onSelect: handleShowTokenUsage
     },
     {
       title: t('export.md.label'),

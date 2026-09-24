@@ -463,6 +463,10 @@
       "unmarked_as_best_answer": "已取消最佳回复标记",
       "websearch": {
         "fetch_complete": "已完成 {{count}} 次搜索..."
+      },
+      "website_read_failed": {
+        "content": "无法读取网页内容。请检查网络连接和网址后重试。",
+        "title": "网页读取失败"
       }
     },
     "models": {
@@ -1045,6 +1049,13 @@
       "title": {
         "label": "话题",
         "recent": "最近的话题"
+      },
+      "token_usage": {
+        "input": "输入",
+        "menu": "Token 用量",
+        "output": "输出",
+        "title": "Token 用量",
+        "total": "总计"
       },
       "unpin": "取消置顶"
     },

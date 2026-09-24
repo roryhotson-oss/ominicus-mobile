@@ -463,6 +463,10 @@
       "unmarked_as_best_answer": "已取消最佳回答標記",
       "websearch": {
         "fetch_complete": "已完成 {{count}} 次搜尋..."
+      },
+      "website_read_failed": {
+        "content": "無法讀取網頁內容。請檢查網路連線和網址後重試。",
+        "title": "網頁讀取失敗"
       }
     },
     "models": {
@@ -1045,6 +1049,13 @@
       "title": {
         "label": "主題",
         "recent": "最近的主題"
+      },
+      "token_usage": {
+        "input": "輸入",
+        "menu": "Token 用量",
+        "output": "輸出",
+        "title": "Token 用量",
+        "total": "總計"
       },
       "unpin": "取消置頂"
     },

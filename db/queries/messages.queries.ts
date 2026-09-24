@@ -249,3 +249,30 @@ export async function getAllMessages(): Promise<Message[]> {
     throw error
   }
 }
+
+/**
+ * Aggregate token usage for a topic from persisted message usage JSON.
+ */
+export async function getTopicTokenUsage(topicId: string): Promise<{ input: number; output: number; total: number }> {
+  try {
+    const results = await db.select({ usage: messages.usage }).from(messages).where(eq(messages.topic_id, topicId))
+    let input = 0
+    let output = 0
+    let total = 0
+    for (const row of results) {
+      if (!row.usage) continue
+      try {
+        const usage = typeof row.usage === 'string' ? JSON.parse(row.usage) : row.usage
+        input += Number(usage?.prompt_tokens) || 0
+        output += Number(usage?.completion_tokens) || 0
+        total += Number(usage?.total_tokens) || 0
+      } catch {
+        // skip malformed usage rows
+      }
+    }
+    return { input, output, total }
+  } catch (error) {
+    logger.error(`Error getting token usage for topic ${topicId}:`, error)
+    throw error
+  }
+}

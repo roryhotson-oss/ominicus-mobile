@@ -463,6 +463,10 @@
       "unmarked_as_best_answer": "最適な回答の設定を解除しました",
       "websearch": {
         "fetch_complete": "検索が {{count}} 回完了しました..."
+      },
+      "website_read_failed": {
+        "content": "ウェブサイトの内容を読み込めませんでした。接続とURLを確認して、もう一度お試しください。",
+        "title": "ウェブサイトの読み込みに失敗"
       }
     },
     "models": {
@@ -1045,6 +1049,13 @@
       "title": {
         "label": "トピック",
         "recent": "最近のトピック"
+      },
+      "token_usage": {
+        "input": "入力",
+        "menu": "トークン使用量",
+        "output": "出力",
+        "title": "トークン使用量",
+        "total": "合計"
       },
       "unpin": "ピン留めを解除"
     },

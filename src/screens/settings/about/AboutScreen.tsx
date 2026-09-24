@@ -78,14 +78,16 @@ export default function AboutScreen() {
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile#readme')}>
+            <PressableRow
+              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile#readme')}>
               <XStack className="items-center gap-3">
                 <Globe size={20} />
                 <Text>{t('settings.about.website.title')}</Text>
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues/')}>
+            <PressableRow
+              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues/')}>
               <XStack className="items-center gap-3">
                 <Github size={20} />
                 <Text>{t('settings.about.feedback.title')}</Text>
@@ -93,14 +95,17 @@ export default function AboutScreen() {
               <ArrowUpRight size={16} />
             </PressableRow>
             <PressableRow
-              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/blob/main/LICENSE/')}>
+              onPress={async () =>
+                await openLink('https://github.com/roryhotson-oss/ominicus-mobile/blob/main/LICENSE/')
+              }>
               <XStack className="items-center gap-3">
                 <Copyright size={20} />
                 <Text>{t('settings.about.license.title')}</Text>
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues')}>
+            <PressableRow
+              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues')}>
               <XStack className="items-center gap-3">
                 <Mail size={20} />
                 <Text>{t('settings.about.contact.title')}</Text>

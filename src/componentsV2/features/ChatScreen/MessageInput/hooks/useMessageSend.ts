@@ -8,6 +8,7 @@ import { useMessageOperations } from '@/hooks/useMessageOperation'
 import { loggerService } from '@/services/LoggerService'
 import { editUserMessageAndRegenerate, getUserMessage, sendMessage as _sendMessage } from '@/services/MessagesService'
 import { topicService } from '@/services/TopicService'
+import { extractUrlFromMessage, readWebsite } from '@/services/WebsiteReaderService'
 import type { Assistant, Model, Topic } from '@/types/assistant'
 import type { FileMetadata } from '@/types/file'
 import type { MessageInputBaseParams } from '@/types/message'
@@ -74,6 +75,24 @@ export function useMessageSend(options: UseMessageSendOptions): UseMessageSendRe
     clearInputs()
     Keyboard.dismiss()
 
+    const urlRequest = extractUrlFromMessage(trimmedText)
+    let contentToSend = currentText
+    if (urlRequest) {
+      try {
+        const websiteContent = await readWebsite(urlRequest.url)
+        const promptSuffix = urlRequest.prompt ? `\n\nQuestion: ${urlRequest.prompt}` : ''
+        contentToSend = `Read the following content from ${urlRequest.url} and answer.\n\n${websiteContent}${promptSuffix}`
+      } catch (error) {
+        logger.error('Website read failed, sending original message:', error)
+        restoreInputs(currentText, currentFiles)
+        presentDialog('error', {
+          title: t('message.website_read_failed.title'),
+          content: t('message.website_read_failed.content')
+        })
+        return
+      }
+    }
+
     // Handle editing mode
     if (currentEditingMessage) {
       clearEditingState()
@@ -106,7 +125,7 @@ export function useMessageSend(options: UseMessageSendOptions): UseMessageSendRe
       const baseUserMessage: MessageInputBaseParams = { assistant, topic }
 
       if (hasText) {
-        baseUserMessage.content = currentText
+        baseUserMessage.content = contentToSend
       }
 
       if (currentFiles.length > 0) {
