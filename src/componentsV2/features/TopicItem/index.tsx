@@ -23,7 +23,7 @@ import type { Topic } from '@/types/assistant'
 import type { HomeNavigationProps } from '@/types/naviagate'
 import { storage } from '@/utils'
 
-import { Check, CheckSquare, Download, Edit3, Sparkles, Trash2 } from '../../icons/LucideIcon'
+import { Check, CheckSquare, Download, Edit3, Pin, PinOff, Sparkles, Trash2 } from '../../icons/LucideIcon'
 
 type TimeFormat = 'time' | 'date'
 
@@ -50,6 +50,7 @@ interface TopicItemProps {
   timeFormat?: TimeFormat
   onDelete?: (topicId: string) => Promise<void>
   onRename?: (topicId: string, newName: string) => Promise<void>
+  onTogglePin?: (topicId: string, isPinned: boolean) => Promise<void>
   currentTopicId: string
   switchTopic: (topicId: string) => Promise<void>
   handleNavigateChatScreen?: (topicId: string) => void
@@ -64,6 +65,7 @@ export const TopicItem: FC<TopicItemProps> = ({
   timeFormat = 'time',
   onDelete,
   onRename,
+  onTogglePin,
   currentTopicId,
   switchTopic,
   handleNavigateChatScreen,
@@ -197,6 +199,16 @@ export const TopicItem: FC<TopicItemProps> = ({
       onSelect: handleGenerateName
     },
     {
+      title: topic.isPinned ? t('topics.unpin') : t('topics.pin'),
+      iOSIcon: 'pin',
+      androidIcon: topic.isPinned ? (
+        <PinOff size={16} className="text-foreground" />
+      ) : (
+        <Pin size={16} className="text-foreground" />
+      ),
+      onSelect: () => onTogglePin?.(topic.id, !topic.isPinned)
+    },
+    {
       title: t('button.rename_topic_name'),
       iOSIcon: 'rectangle.and.pencil.and.ellipsis',
       androidIcon: <Edit3 size={16} className="text-foreground" />,
@@ -242,9 +254,12 @@ export const TopicItem: FC<TopicItemProps> = ({
         />
         <YStack className="flex-1 gap-0.5">
           <XStack className="items-center justify-between gap-2">
-            <Text className="flex-1 text-base font-bold" numberOfLines={1} ellipsizeMode="tail">
-              {assistant?.name}
-            </Text>
+            <XStack className="flex-1 items-center gap-1">
+              <Text className="flex-1 text-base font-bold" numberOfLines={1} ellipsizeMode="tail">
+                {assistant?.name}
+              </Text>
+              {topic.isPinned && <Pin size={12} className="text-foreground-secondary shrink-0" />}
+            </XStack>
             <Text className="text-wrap-none text-foreground-secondary shrink-0 text-xs">{displayTime}</Text>
           </XStack>
           {isGeneratingName ? (

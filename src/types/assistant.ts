@@ -110,6 +110,7 @@ export type Topic = {
   createdAt: number
   updatedAt: number
   isLoading?: boolean
+  isPinned?: boolean
 }
 
 export type ModelPricing = {

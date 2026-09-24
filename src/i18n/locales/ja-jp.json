@@ -457,6 +457,8 @@
       },
       "share_message": "メッセージを共有",
       "topic_deleted": "トピックが削除されました",
+      "topic_pinned": "トピックをピン留めしました",
+      "topic_unpinned": "ピン留めを解除しました",
       "translate_message": "メッセージを翻訳",
       "unmarked_as_best_answer": "最適な回答の設定を解除しました",
       "websearch": {
@@ -1034,6 +1036,8 @@
         "selected_count": "{{count}} 件を選択"
       },
       "new_topic": "新しいトピック",
+      "pin": "トピックをピン留め",
+      "pinned": "ピン留め済み",
       "rename": {
         "title": "トピック名を変更"
       },
@@ -1041,7 +1045,8 @@
       "title": {
         "label": "トピック",
         "recent": "最近のトピック"
-      }
+      },
+      "unpin": "ピン留めを解除"
     },
     "update": {
       "description": "新しいバージョンが利用可能です。今すぐ更新しますか？",

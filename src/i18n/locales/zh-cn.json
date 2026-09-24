@@ -457,6 +457,8 @@
       },
       "share_message": "分享消息",
       "topic_deleted": "话题已删除",
+      "topic_pinned": "话题已置顶",
+      "topic_unpinned": "话题已取消置顶",
       "translate_message": "翻译消息",
       "unmarked_as_best_answer": "已取消最佳回复标记",
       "websearch": {
@@ -1034,6 +1036,8 @@
         "selected_count": "已选 {{count}} 项"
       },
       "new_topic": "新话题",
+      "pin": "置顶话题",
+      "pinned": "置顶",
       "rename": {
         "title": "重命名话题"
       },
@@ -1041,7 +1045,8 @@
       "title": {
         "label": "话题",
         "recent": "最近的话题"
-      }
+      },
+      "unpin": "取消置顶"
     },
     "update": {
       "description": "有新版本可用，是否立即更新？",

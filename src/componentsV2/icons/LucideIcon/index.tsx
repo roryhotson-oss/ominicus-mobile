@@ -57,6 +57,8 @@ import {
   Package,
   Palette,
   PenLine,
+  Pin,
+  PinOff,
   Plus,
   Radio,
   RefreshCw,
@@ -185,6 +187,8 @@ const TriangleAlertIcon = createIcon(TriangleAlert)
 const WifiIcon = createIcon(Wifi)
 const XIcon = createIcon(X)
 const XCircleIcon = createIcon(XCircle)
+const PinIcon = createIcon(Pin)
+const PinOffIcon = createIcon(PinOff)
 const SettingsIcon = createIcon(Settings)
 
 export {
@@ -245,6 +249,8 @@ export {
   PackageIcon as Package,
   PaletteIcon as Palette,
   PenLineIcon as PenLine,
+  PinIcon as Pin,
+  PinOffIcon as PinOff,
   PlusIcon as Plus,
   RadioIcon as Radio,
   RefreshCwIcon as RefreshCw,

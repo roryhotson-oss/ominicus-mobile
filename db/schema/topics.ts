@@ -12,6 +12,7 @@ export const topics = sqliteTable(
       .references(() => assistants.id, { onDelete: 'cascade' }),
     name: text('name').notNull(),
     isLoading: integer('isLoading', { mode: 'boolean' }),
+    isPinned: integer('isPinned', { mode: 'boolean' }),
     ...createUpdateTimestamps
   },
   table => [

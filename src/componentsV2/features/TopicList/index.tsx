@@ -96,7 +96,9 @@ export function TopicList({
   }
 
   const listData = useMemo(() => {
-    const groupedTopics = groupItemsByDate(topics, topic => new Date(topic.updatedAt))
+    const pinnedTopics = topics.filter(topic => topic.isPinned)
+    const unpinnedTopics = topics.filter(topic => !topic.isPinned)
+    const groupedTopics = groupItemsByDate(unpinnedTopics, topic => new Date(topic.updatedAt))
 
     const groupOrder: DateGroupKey[] = ['today', 'yesterday', 'thisWeek', 'lastWeek', 'lastMonth', 'older']
     const groupTitles: Record<DateGroupKey, string> = {
@@ -109,6 +111,13 @@ export function TopicList({
     }
 
     const data: ListItem[] = []
+
+    if (pinnedTopics.length > 0) {
+      data.push({ type: 'header', title: t('topics.pinned'), groupKey: 'today' })
+      pinnedTopics.forEach(topic => {
+        data.push({ type: 'topic', topic, timeFormat: 'time', groupKey: 'today' })
+      })
+    }
 
     groupOrder.forEach(key => {
       const topicList = groupedTopics[key]
@@ -185,6 +194,24 @@ export function TopicList({
     })
   }
 
+  const handleTogglePin = async (topicId: string, isPinned: boolean) => {
+    try {
+      const updatedTopics = localTopics.map(topic =>
+        topic.id === topicId ? { ...topic, isPinned, updatedAt: Date.now() } : topic
+      )
+      setLocalTopics(updatedTopics)
+
+      await topicService.setTopicPinned(topicId, isPinned)
+
+      toast.show(isPinned ? t('message.topic_pinned') : t('message.topic_unpinned'))
+      logger.info('Topic pin state updated', topicId, isPinned)
+    } catch (error) {
+      logger.error('Error toggling topic pin:', error)
+      setLocalTopics(topics)
+      toast.show(t('common.error_occurred'))
+    }
+  }
+
   const handleRename = async (topicId: string, newName: string) => {
     try {
       // Optimistically update local state
@@ -228,6 +255,7 @@ export function TopicList({
             timeFormat={item.timeFormat}
             onDelete={handleDelete}
             onRename={handleRename}
+            onTogglePin={handleTogglePin}
             currentTopicId={currentTopicId}
             switchTopic={switchTopic}
             handleNavigateChatScreen={handleNavigateChatScreen}

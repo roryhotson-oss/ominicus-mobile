@@ -457,6 +457,8 @@
       },
       "share_message": "Share news",
       "topic_deleted": "Topic deleted",
+      "topic_pinned": "Topic pinned",
+      "topic_unpinned": "Topic unpinned",
       "translate_message": "Translate Message",
       "unmarked_as_best_answer": "Unmarked as best answer",
       "websearch": {
@@ -1034,6 +1036,8 @@
         "selected_count": "{{count}} selected"
       },
       "new_topic": "New Topic",
+      "pin": "Pin Topic",
+      "pinned": "Pinned",
       "rename": {
         "title": "Rename Topic"
       },
@@ -1041,7 +1045,8 @@
       "title": {
         "label": "Topic",
         "recent": "Recent Topics"
-      }
+      },
+      "unpin": "Unpin Topic"
     },
     "update": {
       "description": "A new version is available. Would you like to update now?",
