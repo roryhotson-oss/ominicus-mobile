@@ -20,6 +20,11 @@
         "search_placeholder": "搜索助手...",
         "title": "助手市场"
       },
+      "memory": {
+        "placeholder": "从过往对话中保存的事实与偏好会显示在这里，你也可以手动编辑。",
+        "tab": "记忆",
+        "title": "长期记忆"
+      },
       "multi_select": {
         "action": "多选",
         "delete_confirm_message": "这将同时删除这些助手的所有对话。此操作无法撤销。",
@@ -699,6 +704,11 @@
           "description": "接收流式输出时自动滚动到底部",
           "title": "自动滚动消息"
         },
+        "context_budget": {
+          "description": "超出预算时会自动裁剪较早的消息。设为 0 可关闭该功能。",
+          "label": "Token 预算",
+          "title": "上下文 Token 预算"
+        },
         "developer_mode": {
           "title": "开发者模式"
         },
@@ -1032,6 +1042,12 @@
       }
     },
     "topics": {
+      "memory": {
+        "failed_title": "记忆错误",
+        "save": "保存到记忆",
+        "saved": "对话已保存到助手记忆",
+        "saving": "正在保存到记忆…"
+      },
       "multi_select": {
         "action": "多选",
         "delete_confirm_message": "此操作无法撤销。",

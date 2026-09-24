@@ -22,5 +22,6 @@ export const assistants = sqliteTable('assistants', {
   tags: text('tags'),
   group: text('group'),
   websearch_provider_id: text('websearch_provider_id'),
+  memory: text('memory'),
   ...createUpdateTimestamps
 })

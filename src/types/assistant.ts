@@ -27,6 +27,7 @@ export type Assistant = {
   knowledgeRecognition?: 'off' | 'on'
   tags?: string[] // 助手标签
   group?: string[] // 助手分组
+  memory?: string
   mcpServers?: MCPServer[]
 }
 

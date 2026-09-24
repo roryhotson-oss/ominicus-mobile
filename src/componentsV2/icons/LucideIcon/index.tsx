@@ -8,6 +8,7 @@ import {
   AtSign,
   AudioLines,
   BrushCleaning,
+  Brain,
   Bug,
   Camera,
   Check,
@@ -104,6 +105,7 @@ const createIcon = (IconComponent: React.ComponentType<any>) => {
   return IconWithDefaultColors
 }
 
+const BrainIcon = createIcon(Brain)
 const SaveIcon = createIcon(Save)
 const StoreIcon = createIcon(Store)
 const HammerIcon = createIcon(Hammer)
@@ -200,6 +202,7 @@ export {
   AtSignIcon as AtSign,
   AudioLinesIcon as AudioLines,
   BrushCleaningIcon as BrushCleaning,
+  BrainIcon as Brain,
   BugIcon as Bug,
   CameraIcon as Camera,
   CheckIcon as Check,

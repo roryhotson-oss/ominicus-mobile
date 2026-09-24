@@ -32,6 +32,9 @@ export interface PreferenceSchemas {
 
     // Chat Configuration
     'chat.auto_scroll': boolean
+    // Token budget for the conversation context sent to the model
+    // 0 disables budget-based trimming and falls back to contextCount
+    'chat.context_token_budget': number
 
     // App State
     'app.initialization_version': number

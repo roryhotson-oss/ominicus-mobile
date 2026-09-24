@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Pressable, View } from 'react-native'
 
 import { Text } from '@/componentsV2'
+import MemoryTabScreen from '@/screens/assistant/tabs/MemoryTabScreen'
 import ModelTabScreen from '@/screens/assistant/tabs/ModelTabScreen'
 import PromptTabScreen from '@/screens/assistant/tabs/PromptTabScreen'
 import ToolTabScreen from '@/screens/assistant/tabs/ToolTabScreen'
@@ -12,6 +13,7 @@ import type { Assistant } from '@/types/assistant'
 
 export type AssistantDetailTabParamList = {
   PromptTab: { assistant: Assistant }
+  MemoryTab: { assistant: Assistant }
   ModelTab: { assistant: Assistant }
   ToolTab: { assistant: Assistant }
 }
@@ -28,6 +30,7 @@ function CustomTabBar({ state, navigation }: any) {
 
   const tabLabels = {
     PromptTab: t('common.prompt'),
+    MemoryTab: t('assistants.memory.tab'),
     ModelTab: t('common.model'),
     ToolTab: t('common.tool')
   }
@@ -88,6 +91,14 @@ export default function AssistantDetailTabNavigator({ assistant, initialTab }: A
         initialParams={{ assistant }}
       />
       <Tab.Screen
+        name="MemoryTab"
+        component={MemoryTabScreen}
+        options={{
+          tabBarLabel: t('assistants.memory.tab')
+        }}
+        initialParams={{ assistant }}
+      />
+      <Tab.Screen
         name="ModelTab"
         component={ModelTabScreen}
         options={{
@@ -111,6 +122,8 @@ function getInitialTabRoute(tab?: string): keyof AssistantDetailTabParamList {
   switch (tab) {
     case 'prompt':
       return 'PromptTab'
+    case 'memory':
+      return 'MemoryTab'
     case 'model':
       return 'ModelTab'
     case 'tool':

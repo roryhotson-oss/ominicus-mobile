@@ -20,6 +20,11 @@
         "search_placeholder": "Search assistants...",
         "title": "Assistant Market"
       },
+      "memory": {
+        "placeholder": "Facts and preferences saved from past conversations will appear here. You can also edit this note manually.",
+        "tab": "Memory",
+        "title": "Long-term Memory"
+      },
       "multi_select": {
         "action": "Multi-select",
         "delete_confirm_message": "This will also delete all topics associated with these assistants. This action cannot be undone.",
@@ -699,6 +704,11 @@
           "description": "Automatically scroll to the bottom when receiving streamed responses",
           "title": "Auto-scroll Messages"
         },
+        "context_budget": {
+          "description": "Older messages are trimmed to keep prompts within this token budget. Set 0 to disable.",
+          "label": "Token budget",
+          "title": "Context Token Budget"
+        },
         "developer_mode": {
           "title": "Developer Mode"
         },
@@ -1032,6 +1042,12 @@
       }
     },
     "topics": {
+      "memory": {
+        "failed_title": "Memory Error",
+        "save": "Save to Memory",
+        "saved": "Conversation saved to assistant memory",
+        "saving": "Saving to memory…"
+      },
       "multi_select": {
         "action": "Multi-select",
         "delete_confirm_message": "This action cannot be undone.",

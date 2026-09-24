@@ -20,6 +20,11 @@
         "search_placeholder": "検索アシスタント...",
         "title": "アシスタントマーケット"
       },
+      "memory": {
+        "placeholder": "過去の会話から保存した事実や設定がここに表示されます。手動で編集することもできます。",
+        "tab": "メモリ",
+        "title": "長期メモリ"
+      },
       "multi_select": {
         "action": "複数選択",
         "delete_confirm_message": "これらのアシスタントに関連するすべての会話も削除されます。この操作は取り消せません。",
@@ -699,6 +704,11 @@
           "description": "ストリーミング出力受信時に自動で最下部にスクロール",
           "title": "メッセージ自動スクロール"
         },
+        "context_budget": {
+          "description": "予算を超えると古いメッセージが自動的に切り詰められます。0 で無効化します。",
+          "label": "トークン予算",
+          "title": "コンテキストのトークン予算"
+        },
         "developer_mode": {
           "title": "開発者モード"
         },
@@ -1032,6 +1042,12 @@
       }
     },
     "topics": {
+      "memory": {
+        "failed_title": "メモリエラー",
+        "save": "メモリに保存",
+        "saved": "会話をアシスタントのメモリに保存しました",
+        "saving": "メモリに保存中…"
+      },
       "multi_select": {
         "action": "複数選択",
         "delete_confirm_message": "この操作は取り消せません。",

@@ -20,11 +20,13 @@ import { useTheme } from '@/hooks/useTheme'
 import { useToast } from '@/hooks/useToast'
 import i18n from '@/i18n'
 import { fetchTopicNaming } from '@/services/ApiService'
+import { memoryService } from '@/services/MemoryService'
 import type { Topic } from '@/types/assistant'
 import type { HomeNavigationProps } from '@/types/naviagate'
 import { storage } from '@/utils'
 
 import {
+  Brain,
   Check,
   CheckSquare,
   CircleDollarSign,
@@ -90,6 +92,7 @@ export const TopicItem: FC<TopicItemProps> = ({
   const navigation = useNavigation<HomeNavigationProps>()
   const { assistant } = useAssistant(topic.assistantId)
   const [isGeneratingName, setIsGeneratingName] = useState(false)
+  const [isSavingMemory, setIsSavingMemory] = useState(false)
   const { isDark } = useTheme()
   const isActive = currentTopicId === topic.id
   const toast = useToast()
@@ -181,6 +184,21 @@ export const TopicItem: FC<TopicItemProps> = ({
     }
   }
 
+  const handleSaveToMemory = async () => {
+    try {
+      setIsSavingMemory(true)
+      await memoryService.rememberTopic(topic.id)
+      toast.show(t('topics.memory.saved'))
+    } catch (error) {
+      presentDialog('error', {
+        title: t('topics.memory.failed_title'),
+        content: (error as Error).message || 'Unknown error'
+      })
+    } finally {
+      setIsSavingMemory(false)
+    }
+  }
+
   const handleGenerateName = async () => {
     try {
       setIsGeneratingName(true)
@@ -216,6 +234,12 @@ export const TopicItem: FC<TopicItemProps> = ({
           }
         ]
       : []),
+    {
+      title: isSavingMemory ? t('topics.memory.saving') : t('topics.memory.save'),
+      iOSIcon: 'brain',
+      androidIcon: <Brain size={16} className="text-foreground" />,
+      onSelect: handleSaveToMemory
+    },
     {
       title: t('button.generate_topic_name'),
       iOSIcon: 'sparkles',
