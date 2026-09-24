@@ -28,6 +28,7 @@ export function transformDbToAssistant(dbRecord: any): Assistant {
     knowledgeRecognition: dbRecord.knowledge_recognition,
     tags: safeJsonParse(dbRecord.tags, []),
     group: safeJsonParse(dbRecord.group, []),
+    memory: dbRecord.memory ?? '',
     topics: topics
   }
 }
@@ -55,6 +56,7 @@ export function transformAssistantToDb(assistant: Assistant): any {
     mcp_servers: assistant.mcpServers ? JSON.stringify(assistant.mcpServers) : null,
     knowledge_recognition: assistant.knowledgeRecognition,
     tags: assistant.tags ? JSON.stringify(assistant.tags) : null,
-    group: assistant.group ? JSON.stringify(assistant.group) : null
+    group: assistant.group ? JSON.stringify(assistant.group) : null,
+    memory: assistant.memory ?? null
   }
 }

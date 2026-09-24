@@ -411,6 +411,20 @@ export class TopicService {
   }
 
   /**
+   * Toggle topic pinned state (optimistic)
+   *
+   * @param topicId - The topic ID to pin/unpin
+   * @param isPinned - The new pinned state
+   */
+  public async setTopicPinned(topicId: string, isPinned: boolean): Promise<void> {
+    await this.updateTopic(topicId, {
+      isPinned,
+      updatedAt: Date.now()
+    })
+    logger.info(`Topic ${topicId} ${isPinned ? 'pinned' : 'unpinned'}`)
+  }
+
+  /**
    * Delete a topic (optimistic)
    *
    * Removes from cache if it's the current topic, then deletes from database.

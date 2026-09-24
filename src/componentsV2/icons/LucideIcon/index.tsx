@@ -8,6 +8,7 @@ import {
   AtSign,
   AudioLines,
   BrushCleaning,
+  Brain,
   Bug,
   Camera,
   Check,
@@ -57,6 +58,8 @@ import {
   Package,
   Palette,
   PenLine,
+  Pin,
+  PinOff,
   Plus,
   Radio,
   RefreshCw,
@@ -102,6 +105,7 @@ const createIcon = (IconComponent: React.ComponentType<any>) => {
   return IconWithDefaultColors
 }
 
+const BrainIcon = createIcon(Brain)
 const SaveIcon = createIcon(Save)
 const StoreIcon = createIcon(Store)
 const HammerIcon = createIcon(Hammer)
@@ -185,6 +189,8 @@ const TriangleAlertIcon = createIcon(TriangleAlert)
 const WifiIcon = createIcon(Wifi)
 const XIcon = createIcon(X)
 const XCircleIcon = createIcon(XCircle)
+const PinIcon = createIcon(Pin)
+const PinOffIcon = createIcon(PinOff)
 const SettingsIcon = createIcon(Settings)
 
 export {
@@ -196,6 +202,7 @@ export {
   AtSignIcon as AtSign,
   AudioLinesIcon as AudioLines,
   BrushCleaningIcon as BrushCleaning,
+  BrainIcon as Brain,
   BugIcon as Bug,
   CameraIcon as Camera,
   CheckIcon as Check,
@@ -245,6 +252,8 @@ export {
   PackageIcon as Package,
   PaletteIcon as Palette,
   PenLineIcon as PenLine,
+  PinIcon as Pin,
+  PinOffIcon as PinOff,
   PlusIcon as Plus,
   RadioIcon as Radio,
   RefreshCwIcon as RefreshCw,

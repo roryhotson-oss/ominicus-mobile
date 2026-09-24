@@ -21,6 +21,7 @@ import { hasApiKey } from '@/utils/providerUtils'
 import AiProviderNew from '../aiCore/index_new'
 import { assistantService, getDefaultModel } from './AssistantService'
 import { mcpService } from './McpService'
+import { appendMemoryToPrompt } from './MemoryService'
 import { getAssistantProvider } from './ProviderService'
 import type { StreamProcessorCallbacks } from './StreamProcessingService'
 import { createStreamProcessor } from './StreamProcessingService'
@@ -40,6 +41,10 @@ export async function fetchChatCompletion({
   const AI = new AiProviderNew(assistant.model || getDefaultModel())
   const provider = AI.getActualProvider()
 
+  const memoryPrompt = appendMemoryToPrompt(assistant.prompt || '', assistant.memory || '')
+  const requestAssistant =
+    memoryPrompt === (assistant.prompt || '') ? assistant : { ...assistant, prompt: memoryPrompt }
+
   const mcpTools: MCPTool[] = []
 
   onChunkReceived({ type: ChunkType.LLM_RESPONSE_CREATED })
@@ -47,6 +52,8 @@ export async function fetchChatCompletion({
   if (isPromptToolUse(assistant) || isSupportedToolUse(assistant)) {
     mcpTools.push(...(await fetchAssistantMcpTools(assistant)))
   }
+
+  const finalAssistant = requestAssistant
 
   if (prompt) {
     messages = [
@@ -63,7 +70,7 @@ export async function fetchChatCompletion({
     modelId,
     capabilities,
     webSearchPluginConfig
-  } = await buildStreamTextParams(messages, assistant, provider, {
+  } = await buildStreamTextParams(messages, finalAssistant, provider, {
     mcpTools: mcpTools,
     webSearchProviderId: assistant.webSearchProviderId,
     requestOptions: options
@@ -89,7 +96,7 @@ export async function fetchChatCompletion({
   try {
     await AI.completions(modelId, aiSdkParams, {
       ...middlewareConfig,
-      assistant,
+      assistant: finalAssistant,
       topicId,
       callType: 'chat',
       uiMessages

@@ -20,6 +20,11 @@
         "search_placeholder": "Search assistants...",
         "title": "Assistant Market"
       },
+      "memory": {
+        "placeholder": "Facts and preferences saved from past conversations will appear here. You can also edit this note manually.",
+        "tab": "Memory",
+        "title": "Long-term Memory"
+      },
       "multi_select": {
         "action": "Multi-select",
         "delete_confirm_message": "This will also delete all topics associated with these assistants. This action cannot be undone.",
@@ -457,10 +462,16 @@
       },
       "share_message": "Share news",
       "topic_deleted": "Topic deleted",
+      "topic_pinned": "Topic pinned",
+      "topic_unpinned": "Topic unpinned",
       "translate_message": "Translate Message",
       "unmarked_as_best_answer": "Unmarked as best answer",
       "websearch": {
         "fetch_complete": "Completed {{count}} searches..."
+      },
+      "website_read_failed": {
+        "content": "Could not read the website content. Check your connection and the URL, then try again.",
+        "title": "Website Read Failed"
       }
     },
     "models": {
@@ -692,6 +703,11 @@
         "auto_scroll": {
           "description": "Automatically scroll to the bottom when receiving streamed responses",
           "title": "Auto-scroll Messages"
+        },
+        "context_budget": {
+          "description": "Older messages are trimmed to keep prompts within this token budget. Set 0 to disable.",
+          "label": "Token budget",
+          "title": "Context Token Budget"
         },
         "developer_mode": {
           "title": "Developer Mode"
@@ -1026,6 +1042,12 @@
       }
     },
     "topics": {
+      "memory": {
+        "failed_title": "Memory Error",
+        "save": "Save to Memory",
+        "saved": "Conversation saved to assistant memory",
+        "saving": "Saving to memory…"
+      },
       "multi_select": {
         "action": "Multi-select",
         "delete_confirm_message": "This action cannot be undone.",
@@ -1034,6 +1056,8 @@
         "selected_count": "{{count}} selected"
       },
       "new_topic": "New Topic",
+      "pin": "Pin Topic",
+      "pinned": "Pinned",
       "rename": {
         "title": "Rename Topic"
       },
@@ -1041,7 +1065,15 @@
       "title": {
         "label": "Topic",
         "recent": "Recent Topics"
-      }
+      },
+      "token_usage": {
+        "input": "Input",
+        "menu": "Token Usage",
+        "output": "Output",
+        "title": "Token Usage",
+        "total": "Total"
+      },
+      "unpin": "Unpin Topic"
     },
     "update": {
       "description": "A new version is available. Would you like to update now?",

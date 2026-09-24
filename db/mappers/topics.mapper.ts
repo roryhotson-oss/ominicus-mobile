@@ -13,7 +13,8 @@ export function transformDbToTopic(dbRecord: any): Topic {
     createdAt: dbRecord.created_at,
     updatedAt: dbRecord.updated_at,
     // 将数字（0 或 1）转换为布尔值
-    isLoading: !!dbRecord.isLoading
+    isLoading: !!dbRecord.isLoading,
+    isPinned: !!dbRecord.isPinned
   }
 }
 
@@ -30,6 +31,7 @@ export function transformTopicToDb(topic: Topic): any {
     created_at: topic.createdAt,
     updated_at: topic.updatedAt,
     // 将布尔值转换为数字（1 表示 true，0 表示 false）
-    isLoading: topic.isLoading ? 1 : 0
+    isLoading: topic.isLoading ? 1 : 0,
+    isPinned: topic.isPinned ? 1 : 0
   }
 }

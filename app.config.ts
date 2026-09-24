@@ -38,7 +38,7 @@ export default {
     android: {
       adaptiveIcon: {
         foregroundImage: './src/assets/images/adaptive-icon.png',
-        backgroundColor: '#F65D5D'
+        backgroundColor: '#4F46E5'
       },
       edgeToEdgeEnabled: true,
       package: 'com.ominicus.ominicus_app',

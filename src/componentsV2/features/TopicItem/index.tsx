@@ -13,17 +13,30 @@ import { ExportOptionsContent } from '@/componentsV2/features/TopicItem/ExportOp
 import { RenameTopicContent } from '@/componentsV2/features/TopicItem/RenameTopicContent'
 import XStack from '@/componentsV2/layout/XStack'
 import YStack from '@/componentsV2/layout/YStack'
+import { messageDatabase } from '@/database'
 import { useAssistant } from '@/hooks/useAssistant'
 import { useExport } from '@/hooks/useExport'
 import { useTheme } from '@/hooks/useTheme'
 import { useToast } from '@/hooks/useToast'
 import i18n from '@/i18n'
 import { fetchTopicNaming } from '@/services/ApiService'
+import { memoryService } from '@/services/MemoryService'
 import type { Topic } from '@/types/assistant'
 import type { HomeNavigationProps } from '@/types/naviagate'
 import { storage } from '@/utils'
 
-import { Check, CheckSquare, Download, Edit3, Sparkles, Trash2 } from '../../icons/LucideIcon'
+import {
+  Brain,
+  Check,
+  CheckSquare,
+  CircleDollarSign,
+  Download,
+  Edit3,
+  Pin,
+  PinOff,
+  Sparkles,
+  Trash2
+} from '../../icons/LucideIcon'
 
 type TimeFormat = 'time' | 'date'
 
@@ -50,6 +63,7 @@ interface TopicItemProps {
   timeFormat?: TimeFormat
   onDelete?: (topicId: string) => Promise<void>
   onRename?: (topicId: string, newName: string) => Promise<void>
+  onTogglePin?: (topicId: string, isPinned: boolean) => Promise<void>
   currentTopicId: string
   switchTopic: (topicId: string) => Promise<void>
   handleNavigateChatScreen?: (topicId: string) => void
@@ -64,6 +78,7 @@ export const TopicItem: FC<TopicItemProps> = ({
   timeFormat = 'time',
   onDelete,
   onRename,
+  onTogglePin,
   currentTopicId,
   switchTopic,
   handleNavigateChatScreen,
@@ -77,6 +92,7 @@ export const TopicItem: FC<TopicItemProps> = ({
   const navigation = useNavigation<HomeNavigationProps>()
   const { assistant } = useAssistant(topic.assistantId)
   const [isGeneratingName, setIsGeneratingName] = useState(false)
+  const [isSavingMemory, setIsSavingMemory] = useState(false)
   const { isDark } = useTheme()
   const isActive = currentTopicId === topic.id
   const toast = useToast()
@@ -155,6 +171,34 @@ export const TopicItem: FC<TopicItemProps> = ({
     })
   }
 
+  const handleShowTokenUsage = async () => {
+    try {
+      const usage = await messageDatabase.getTopicTokenUsage(topic.id)
+      const format = (value: number) => value.toLocaleString()
+      presentDialog('info', {
+        title: t('topics.token_usage.title'),
+        content: `${t('topics.token_usage.input')}: ${format(usage.input)}\n${t('topics.token_usage.output')}: ${format(usage.output)}\n${t('topics.token_usage.total')}: ${format(usage.total)}`
+      })
+    } catch {
+      toast.show(t('common.error_occurred'))
+    }
+  }
+
+  const handleSaveToMemory = async () => {
+    try {
+      setIsSavingMemory(true)
+      await memoryService.rememberTopic(topic.id)
+      toast.show(t('topics.memory.saved'))
+    } catch (error) {
+      presentDialog('error', {
+        title: t('topics.memory.failed_title'),
+        content: (error as Error).message || 'Unknown error'
+      })
+    } finally {
+      setIsSavingMemory(false)
+    }
+  }
+
   const handleGenerateName = async () => {
     try {
       setIsGeneratingName(true)
@@ -191,16 +235,38 @@ export const TopicItem: FC<TopicItemProps> = ({
         ]
       : []),
     {
+      title: isSavingMemory ? t('topics.memory.saving') : t('topics.memory.save'),
+      iOSIcon: 'brain',
+      androidIcon: <Brain size={16} className="text-foreground" />,
+      onSelect: handleSaveToMemory
+    },
+    {
       title: t('button.generate_topic_name'),
       iOSIcon: 'sparkles',
       androidIcon: <Sparkles size={16} className="text-foreground" />,
       onSelect: handleGenerateName
     },
     {
+      title: topic.isPinned ? t('topics.unpin') : t('topics.pin'),
+      iOSIcon: 'pin',
+      androidIcon: topic.isPinned ? (
+        <PinOff size={16} className="text-foreground" />
+      ) : (
+        <Pin size={16} className="text-foreground" />
+      ),
+      onSelect: () => onTogglePin?.(topic.id, !topic.isPinned)
+    },
+    {
       title: t('button.rename_topic_name'),
       iOSIcon: 'rectangle.and.pencil.and.ellipsis',
       androidIcon: <Edit3 size={16} className="text-foreground" />,
       onSelect: handleRename
+    },
+    {
+      title: t('topics.token_usage.menu'),
+      iOSIcon: 'dollarsign.circle',
+      androidIcon: <CircleDollarSign size={16} className="text-foreground" />,
+      onSelect: handleShowTokenUsage
     },
     {
       title: t('export.md.label'),
@@ -242,9 +308,12 @@ export const TopicItem: FC<TopicItemProps> = ({
         />
         <YStack className="flex-1 gap-0.5">
           <XStack className="items-center justify-between gap-2">
-            <Text className="flex-1 text-base font-bold" numberOfLines={1} ellipsizeMode="tail">
-              {assistant?.name}
-            </Text>
+            <XStack className="flex-1 items-center gap-1">
+              <Text className="flex-1 text-base font-bold" numberOfLines={1} ellipsizeMode="tail">
+                {assistant?.name}
+              </Text>
+              {topic.isPinned && <Pin size={12} className="text-foreground-secondary shrink-0" />}
+            </XStack>
             <Text className="text-wrap-none text-foreground-secondary shrink-0 text-xs">{displayTime}</Text>
           </XStack>
           {isGeneratingName ? (

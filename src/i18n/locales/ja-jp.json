@@ -20,6 +20,11 @@
         "search_placeholder": "検索アシスタント...",
         "title": "アシスタントマーケット"
       },
+      "memory": {
+        "placeholder": "過去の会話から保存した事実や設定がここに表示されます。手動で編集することもできます。",
+        "tab": "メモリ",
+        "title": "長期メモリ"
+      },
       "multi_select": {
         "action": "複数選択",
         "delete_confirm_message": "これらのアシスタントに関連するすべての会話も削除されます。この操作は取り消せません。",
@@ -457,10 +462,16 @@
       },
       "share_message": "メッセージを共有",
       "topic_deleted": "トピックが削除されました",
+      "topic_pinned": "トピックをピン留めしました",
+      "topic_unpinned": "ピン留めを解除しました",
       "translate_message": "メッセージを翻訳",
       "unmarked_as_best_answer": "最適な回答の設定を解除しました",
       "websearch": {
         "fetch_complete": "検索が {{count}} 回完了しました..."
+      },
+      "website_read_failed": {
+        "content": "ウェブサイトの内容を読み込めませんでした。接続とURLを確認して、もう一度お試しください。",
+        "title": "ウェブサイトの読み込みに失敗"
       }
     },
     "models": {
@@ -692,6 +703,11 @@
         "auto_scroll": {
           "description": "ストリーミング出力受信時に自動で最下部にスクロール",
           "title": "メッセージ自動スクロール"
+        },
+        "context_budget": {
+          "description": "予算を超えると古いメッセージが自動的に切り詰められます。0 で無効化します。",
+          "label": "トークン予算",
+          "title": "コンテキストのトークン予算"
         },
         "developer_mode": {
           "title": "開発者モード"
@@ -1026,6 +1042,12 @@
       }
     },
     "topics": {
+      "memory": {
+        "failed_title": "メモリエラー",
+        "save": "メモリに保存",
+        "saved": "会話をアシスタントのメモリに保存しました",
+        "saving": "メモリに保存中…"
+      },
       "multi_select": {
         "action": "複数選択",
         "delete_confirm_message": "この操作は取り消せません。",
@@ -1034,6 +1056,8 @@
         "selected_count": "{{count}} 件を選択"
       },
       "new_topic": "新しいトピック",
+      "pin": "トピックをピン留め",
+      "pinned": "ピン留め済み",
       "rename": {
         "title": "トピック名を変更"
       },
@@ -1041,7 +1065,15 @@
       "title": {
         "label": "トピック",
         "recent": "最近のトピック"
-      }
+      },
+      "token_usage": {
+        "input": "入力",
+        "menu": "トークン使用量",
+        "output": "出力",
+        "title": "トークン使用量",
+        "total": "合計"
+      },
+      "unpin": "ピン留めを解除"
     },
     "update": {
       "description": "新しいバージョンが利用可能です。今すぐ更新しますか？",

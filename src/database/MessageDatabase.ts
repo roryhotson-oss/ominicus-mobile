@@ -5,6 +5,7 @@ import {
   getHasMessagesWithTopicId as _getHasMessagesWithTopicId,
   getMessageById as _getMessageById,
   getMessagesByTopicId as _getMessagesByTopicId,
+  getTopicTokenUsage as _getTopicTokenUsage,
   removeAllMessages as _removeAllMessages,
   updateMessageById as _updateMessageById,
   upsertMessages as _upsertMessages
@@ -44,6 +45,10 @@ export async function getHasMessagesWithTopicId(topicId: string) {
   return _getHasMessagesWithTopicId(topicId)
 }
 
+export async function getTopicTokenUsage(topicId: string) {
+  return _getTopicTokenUsage(topicId)
+}
+
 export async function getAllMessages() {
   return _getAllMessages()
 }
@@ -56,6 +61,7 @@ export const messageDatabase = {
   updateMessageById,
   getMessageById,
   getMessagesByTopicId,
+  getTopicTokenUsage,
   getHasMessagesWithTopicId,
   getAllMessages
 }
