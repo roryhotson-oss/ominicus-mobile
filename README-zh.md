@@ -4,32 +4,71 @@
 
 **Ominicus** —— 一款强大的 LLM（AI 大语言模型）助手应用，支持 iOS 和 Android，基于 [Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app) 架构构建。
 
-Ominicus 与 Cherry Studio 生态保持完全兼容：局域网传输、桌面端备份、CherryAI 提供商均可继续使用。
-
 <div align="center">
 
-**[快速开始](#-快速开始)** | **[功能特性](#-功能特性)** | **[参与贡献](#-参与贡献)** | **[路线图](#-路线图)**
+**[关于本分支](#-关于本分支)** | **[快速开始](#-快速开始)** | **[功能特性](#-功能特性)** | **[参与贡献](#-参与贡献)** | **[路线图](#-路线图)**
 
 </div>
+
+## 🔗 关于本分支
+
+Ominicus 处于一个相关项目家族之中：
+
+```
+Cherry Studio（桌面版）──► Cherry Studio App（移动版）──fork──► Ominicus（本仓库）
+Newelle（GTK/Linux 助手）──灵感来源──► 网页阅读、长期记忆
+```
+
+- **[Cherry Studio](https://github.com/CherryHQ/cherry-studio)** —— 桌面客户端。Ominicus 并不是桌面版换皮，而是基于下方的**移动版**代码库。
+- **[Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app)** —— 官方移动版，本仓库历史的起点。Ominicus 是它的分支，保留了其架构（Expo + React Native、HeroUI/Uniwind、Redux + Drizzle、`@cherrystudio/ai-core` 抽象层）。
+- **[Newelle](https://github.com/qwersyk/Newelle)** —— GTK/Linux 助手，其网页阅读（`#https://` 前缀）和长期记忆的思路在本项目中被移植到移动端。
+
+### Ominicus 在上游基础上新增的功能
+
+- 🧠 **长期记忆** —— 从话题总结生成每个助手的记忆笔记，在每次对话中自动召回（详见下文）
+- 📏 **上下文 Token 预算** —— 按可配置的 Token 预算自动裁剪提示词
+- 🌐 **网页阅读** —— 在对话中输入 `#https://example.com 你的问题`
+- 📌 **话题置顶** —— 置顶话题分组显示在列表顶部
+- 💰 **话题 Token 用量** —— 从话题上下文菜单查看输入/输出/总量
+- 🛡️ Ominicus 品牌与应用图标
+
+### Cherry Studio 兼容性（刻意保持不变）
+
+以下标识符被有意保留，以保证桌面端同步和备份继续可用 —— **贡献时请勿重命名**：
+
+| 内容                    | 标识符                                      |
+| ----------------------- | ------------------------------------------- |
+| 局域网传输 Bonjour 服务 | `_cherrystudio._tcp`                        |
+| OAuth 重定向 scheme     | `cherry-studio://`                          |
+| 备份 Redux key / 文件名 | `persist:cherry-studio` / `cherry-studio.*` |
+| 导入流程                | `import_from_cherry_studio`                 |
+| 提供商 id / npm 包      | CherryAI、CherryIN、`@cherrystudio/*`       |
+
+与桌面版 Cherry Studio 和 Newelle 的完整功能对比见 [docs/ominicus-feature-roadmap.md](./docs/ominicus-feature-roadmap.md)。
 
 ## ✨ 功能特性
 
 ### 对话与助手
 
-- **多 LLM 提供商支持**：OpenAI、Gemini、Anthropic 等 —— 使用你自己的 API Key
-- **AI 助手 & 对话**：使用预设助手，进行流畅的多模型对话
+- **多 LLM 提供商支持**：OpenAI、Gemini、Anthropic 等 —— 使用你自己的 API Key，也支持本地端点（通过自定义 OpenAI 兼容提供商接入 Ollama / LM Studio）
+- **AI 助手 & 对话**：使用预设助手与助手市场；也可以创建自己的助手，自定义提示词、模型和工具
+- **多模型对话**：在同一话题中 @ 多个模型并比较回答；支持最佳回答标记
 - **🧠 长期记忆**：将任意话题保存到助手的记忆中 —— Ominicus 会总结对话、合并为持久记忆笔记，并在之后的每次对话中自动召回。每个助手的记忆均可手动编辑
 - **📏 上下文 Token 预算**：为提示词设置 Token 预算，自动裁剪较早的消息，长对话也不会超出上下文窗口
 - **🌐 网页阅读**：在对话中输入 `#https://example.com 你的问题`，Ominicus 会自动读取网页内容
 - **📌 话题置顶**：将重要对话固定在列表顶部
 - **MCP 支持**：连接 Model Context Protocol 服务器，支持 OAuth 与服务器市场
-- **实用工具**：网页搜索、消息翻译、TTS、话题 Token 用量统计、最佳回答标记
+- **网页搜索**：可插拔搜索提供商 + 模型内置搜索，支持结果数量与内容长度设置
+- **文件与图片**：在消息中附加文档/图片（支持 PDF、文本、视觉模型）
+- **消息工具**：翻译、重新生成/编辑、思考过程展示、TTS 播放、语音输入
+- **话题工具**：话题名自动生成、话题 Token 用量（输入/输出/总量）、导出 Markdown、重命名、置顶、多选
 
 ### 移动端优先体验
 
-- **iOS & Android**：一套代码，原生性能
+- **iOS & Android**：一套代码，原生性能，支持平板
 - **浅色/深色主题**，支持 5 种语言（English、简体中文、繁體中文、日本語、Русский）
-- **Cherry Studio 桌面端同步**：从 Cherry Studio 桌面客户端导入备份、局域网传输数据
+- **Cherry Studio 桌面端同步**：从 Cherry Studio 桌面客户端导入备份、局域网传输数据 —— 传输协议与备份格式与上游保持不变
+- **数据自主**：本地 SQLite 存储、完整备份/恢复、应用内历史搜索
 
 ## 🛠️ 技术栈
 
