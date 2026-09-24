@@ -4,32 +4,71 @@ English | [中文](./README-zh.md)
 
 **Ominicus** is a powerful LLM (Large Language Model) AI assistant for iOS and Android, built on the [Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app) structure.
 
-Ominicus keeps full compatibility with the Cherry Studio ecosystem: LAN transfer, desktop backups, and the CherryAI provider all keep working.
-
 <div align="center">
 
-**[Quick Start](#-quick-start)** | **[Features](#-features)** | **[Contributing](#-contributing)** | **[Roadmap](#-roadmap)**
+**[About This Fork](#-about-this-fork)** | **[Quick Start](#-quick-start)** | **[Features](#-features)** | **[Contributing](#-contributing)** | **[Roadmap](#-roadmap)**
 
 </div>
+
+## 🔗 About This Fork
+
+Ominicus exists in a small family of related projects:
+
+```
+Cherry Studio (desktop)  ──►  Cherry Studio App (mobile)  ──fork──►  Ominicus (this repo)
+Newelle (GTK/Linux assistant)  ──inspiration──►  website reading, long-term memory
+```
+
+- **[Cherry Studio](https://github.com/CherryHQ/cherry-studio)** — the desktop client. Ominicus is _not_ a rebrand of the desktop app; it builds on the **mobile** codebase below.
+- **[Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app)** — the official mobile version, where this repository's history begins. Ominicus is a fork of it and retains its architecture (Expo + React Native, HeroUI/Uniwind, Redux + Drizzle, the `@cherrystudio/ai-core` abstraction).
+- **[Newelle](https://github.com/qwersyk/Newelle)** — a GTK/Linux assistant whose website-reading (`#https://` prefix) and long-term-memory ideas were ported to mobile here.
+
+### What Ominicus adds on top of upstream
+
+- 🧠 **Long-term memory** — per-assistant memory notes built from topic summaries, recalled in every chat (details below)
+- 📏 **Context token budget** — automatic prompt trimming to a configurable token budget
+- 🌐 **Website reading** — `#https://example.com your question` in chat
+- 📌 **Topic pinning** — pinned topics grouped at the top of the list
+- 💰 **Per-topic token usage** — input/output/total from the topic context menu
+- 🛡️ Ominicus branding and app icon
+
+### Cherry Studio compatibility (unchanged by design)
+
+These identifiers are intentionally kept, so desktop sync and backups keep working — **do not rename them in contributions**:
+
+| What                         | Identifier                                  |
+| ---------------------------- | ------------------------------------------- |
+| LAN transfer Bonjour service | `_cherrystudio._tcp`                        |
+| OAuth redirect scheme        | `cherry-studio://`                          |
+| Backup Redux key / filenames | `persist:cherry-studio` / `cherry-studio.*` |
+| Import flow                  | `import_from_cherry_studio`                 |
+| Provider ids / npm packages  | CherryAI, CherryIN, `@cherrystudio/*`       |
+
+See [docs/ominicus-feature-roadmap.md](./docs/ominicus-feature-roadmap.md) for the full feature comparison against desktop Cherry Studio and Newelle.
 
 ## ✨ Features
 
 ### Chat & Assistants
 
-- **Multi-LLM Provider Support**: OpenAI, Gemini, Anthropic, and many more — bring your own API key
-- **AI Assistants & Conversations**: Access preset assistants and engage in smooth multi-model conversations
+- **Multi-LLM Provider Support**: OpenAI, Gemini, Anthropic, and many more — bring your own API key, including local endpoints (Ollama / LM Studio via a custom OpenAI-compatible provider)
+- **AI Assistants & Conversations**: Access preset assistants and an assistant marketplace; create your own with custom prompts, models, and tools
+- **Multi-model conversations**: mention several models in one topic and compare answers; best-answer marking included
 - **🧠 Long-term Memory**: Save any topic to an assistant's memory — Ominicus summarizes the conversation, merges it into a durable memory note, and recalls it in every future chat. Fully editable per assistant
 - **📏 Context Token Budget**: Keep prompts within a configurable token budget — older messages are trimmed automatically so long conversations never blow the context window
 - **🌐 Website Reading**: Paste `#https://example.com your question` in chat and Ominicus reads the page for you
 - **📌 Topic Pinning**: Pin your most important conversations to the top
 - **MCP Support**: Connect Model Context Protocol servers with OAuth and a server marketplace
-- **Tools**: Web search providers, message translation, TTS, token usage per topic, best-answer marking
+- **Web Search**: pluggable search providers plus built-in model-side search, with result count and content-limit settings
+- **Files & images**: attach documents/images to messages (PDF, text, vision models supported)
+- **Message tools**: translation, regenerate/edit, reasoning display, TTS playback, voice input
+- **Topic tools**: auto-generated topic names, per-topic token usage (input/output/total), export to Markdown, rename, pin, multi-select
 
 ### Mobile-first Experience
 
-- **iOS & Android**: One codebase, native performance
+- **iOS & Android**: One codebase, native performance, tablet support
 - **Light/Dark themes** with 5 languages (English, 简体中文, 繁體中文, 日本語, Русский)
-- **Cherry Studio Desktop Sync**: Import backups and transfer data over LAN from the Cherry Studio desktop client
+- **Cherry Studio Desktop Sync**: Import backups and transfer data over LAN from the Cherry Studio desktop client — the transfer protocol and backup format are unchanged from upstream
+- **Data control**: local SQLite storage, full backup/restore, in-app history search
 
 ## 🛠️ Tech Stack
 
