@@ -244,7 +244,7 @@ export const useMessageActions = ({ message, assistant }: UseMessageActionsProps
       logger.info('Filtered Messages:', filteredMessages)
       const mainContent = await getMainTextContent(filteredMessages[0])
       await Share.open({
-        title: 'Cherry Studio',
+        title: 'Ominicus',
         message: mainContent,
         failOnCancel: false
       })

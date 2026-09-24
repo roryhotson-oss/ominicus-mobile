@@ -112,7 +112,7 @@
       "think": "Thinking for {{seconds}} seconds",
       "think_done": "Thought deeply for {{seconds}} seconds",
       "think_expand": "Tap to read my mind",
-      "title": "Welcome to Cherry Studio!",
+      "title": "Welcome to Ominicus!",
       "topics": {
         "list": "List",
         "search": {
@@ -128,8 +128,6 @@
       "camera": "Camera",
       "cancel": "Cancel",
       "check": "Check",
-      "cherry_studio": "Cherry Studio",
-      "cherry_studio_description": "A Powerful AI assistant for producer",
       "clear_all": "Clear All",
       "close": "Close",
       "confirm": "Confirm",
@@ -158,6 +156,8 @@
       "name": "Name",
       "ok": "OK",
       "older": "Older",
+      "ominicus": "Ominicus",
+      "ominicus_description": "A powerful AI assistant for everyone",
       "others": "Others",
       "parameters": "Parameters",
       "photo": "Photo",
@@ -173,7 +173,7 @@
       "see_all": "See All",
       "select_all": "Select All",
       "source": "Source",
-      "start": "Get Started with Cherry Studio 🎉",
+      "start": "Get Started with Ominicus 🎉",
       "stop": "Stop",
       "this_week": "This Week",
       "today": "Today",
@@ -1053,7 +1053,7 @@
       "error": "Speech recognition error",
       "not_available": "Speech recognition is not available",
       "permission_denied": "Microphone permission denied",
-      "permission_denied_message": "Please allow Cherry Studio to access your microphone in Settings",
+      "permission_denied_message": "Please allow Ominicus to access your microphone in Settings",
       "start": "Start voice input",
       "stop": "Stop voice input"
     }

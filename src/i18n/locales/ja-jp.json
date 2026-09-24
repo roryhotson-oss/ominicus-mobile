@@ -112,7 +112,7 @@
       "think": "{{seconds}}秒考え中",
       "think_done": "{{seconds}}秒深く考えました",
       "think_expand": "タップして私の心を読む",
-      "title": "Cherry Studio へようこそ！",
+      "title": "Ominicus へようこそ！",
       "topics": {
         "list": "リスト",
         "search": {
@@ -128,8 +128,6 @@
       "camera": "カメラ",
       "cancel": "キャンセル",
       "check": "チェック",
-      "cherry_studio": "Cherry Studio",
-      "cherry_studio_description": "パワフルなAIプロダクション・アシスタント",
       "clear_all": "すべてクリア",
       "close": "閉じる",
       "confirm": "確認",
@@ -158,6 +156,8 @@
       "name": "名前",
       "ok": "OK",
       "older": "年上",
+      "ominicus": "Ominicus",
+      "ominicus_description": "パワフルなAIプロダクション・アシスタント",
       "others": "他の人",
       "parameters": "パラメータ",
       "photo": "写真",
@@ -173,7 +173,7 @@
       "see_all": "すべて表示",
       "select_all": "すべて選択",
       "source": "ソース",
-      "start": "Cherry Studioアプリを使ってみましょう 🎉",
+      "start": "Ominicusアプリを使ってみましょう 🎉",
       "stop": "停止",
       "this_week": "今週",
       "today": "今日",
@@ -184,7 +184,7 @@
       "visit": "訪問",
       "websearch": "ウェブ検索",
       "welcome": {
-        "message1": "Cherry Studio へようこそ",
+        "message1": "Ominicus へようこそ",
         "message2": "創作を始めて、無限の可能性を楽しみましょう！"
       },
       "yesterday": "昨日"
@@ -1053,7 +1053,7 @@
       "error": "音声認識エラー",
       "not_available": "音声認識は利用できません",
       "permission_denied": "マイクの権限が拒否されました",
-      "permission_denied_message": "設定でCherry Studioにマイクへのアクセスを許可してください",
+      "permission_denied_message": "設定でOminicusにマイクへのアクセスを許可してください",
       "start": "音声入力を開始",
       "stop": "音声入力を停止"
     }

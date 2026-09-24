@@ -19,7 +19,7 @@ function buildShortcutURL(params: { name: string; input?: string; text?: string;
   const { name, input, text, callbackId } = params
 
   // Base callback URL using the app's custom scheme
-  const baseCallbackURL = 'cherry-studio://shortcut-callback'
+  const baseCallbackURL = 'ominicus://shortcut-callback'
 
   // Build x-callback URLs
   const xSuccess = `${baseCallbackURL}?id=${encodeURIComponent(callbackId)}&result=`

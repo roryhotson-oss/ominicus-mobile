@@ -506,7 +506,7 @@ class McpClientService {
     // Create and connect client
     const client = new Client(
       {
-        name: 'cherry-studio-app',
+        name: 'ominicus-app',
         version: '0.1.5' // TODO: Get from package.json
       },
       {

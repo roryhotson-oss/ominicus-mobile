@@ -112,7 +112,7 @@
       "think": "Думаю {{seconds}} секунд",
       "think_done": "Глубоко думал {{seconds}} секунд",
       "think_expand": "Нажмите, чтобы прочитать мои мысли",
-      "title": "Добро пожаловать в Cherry Studio!",
+      "title": "Добро пожаловать в Ominicus!",
       "topics": {
         "list": "Список",
         "search": {
@@ -128,8 +128,6 @@
       "camera": "Камера",
       "cancel": "Отмена",
       "check": "Проверить",
-      "cherry_studio": "Cherry Studio",
-      "cherry_studio_description": "Мощный ИИ-ассистент для продюсеров",
       "clear_all": "Очистить всё",
       "close": "Закрыть",
       "confirm": "подтверждение",
@@ -158,6 +156,8 @@
       "name": "Имя",
       "ok": "ОК",
       "older": "Старше",
+      "ominicus": "Ominicus",
+      "ominicus_description": "Мощный ИИ-ассистент для продюсеров",
       "others": "Другие",
       "parameters": "Параметры",
       "photo": "Фото",
@@ -173,7 +173,7 @@
       "see_all": "Показать все",
       "select_all": "Выбрать все",
       "source": "Источник",
-      "start": "Начните использовать Cherry Studio уже сегодня 🎉",
+      "start": "Начните использовать Ominicus уже сегодня 🎉",
       "stop": "Стоп",
       "this_week": "На этой неделе",
       "today": "Сегодня",
@@ -184,7 +184,7 @@
       "visit": "Посетить",
       "websearch": "Поиск в интернете",
       "welcome": {
-        "message1": "Добро пожаловать в Cherry Studio",
+        "message1": "Добро пожаловать в Ominicus",
         "message2": "Начните создавать и откройте бесконечные возможности!"
       },
       "yesterday": "Вчера"
@@ -1053,7 +1053,7 @@
       "error": "Ошибка распознавания речи",
       "not_available": "Распознавание речи недоступно",
       "permission_denied": "Доступ к микрофону запрещён",
-      "permission_denied_message": "Пожалуйста, разрешите Cherry Studio доступ к микрофону в настройках",
+      "permission_denied_message": "Пожалуйста, разрешите Ominicus доступ к микрофону в настройках",
       "start": "Начать голосовой ввод",
       "stop": "Остановить голосовой ввод"
     }

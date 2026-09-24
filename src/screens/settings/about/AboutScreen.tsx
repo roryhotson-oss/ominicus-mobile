@@ -39,7 +39,7 @@ export default function AboutScreen() {
         title={t('settings.about.header')}
         rightButton={{
           icon: <Github size={24} />,
-          onPress: async () => await openLink('https://github.com/CherryHQ/cherry-studio-app')
+          onPress: async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile')
         }}
       />
       <Container>
@@ -58,9 +58,9 @@ export default function AboutScreen() {
                 <Image className="h-full w-full" source={require('@/assets/images/favicon.png')} />
               </FastSquircleView>
               <YStack className="flex-1 gap-[5px] py-1">
-                <Text className="text-[22px] font-bold">{t('common.cherry_studio')}</Text>
+                <Text className="text-[22px] font-bold">{t('common.ominicus')}</Text>
                 <Text className="text-foreground-secondary text-sm" numberOfLines={0}>
-                  {t('common.cherry_studio_description')}
+                  {t('common.ominicus_description')}
                 </Text>
                 <Text className="primary-badge self-start rounded-[25.37px] border px-2 py-0.5 text-sm">
                   v{appVersion}
@@ -71,21 +71,21 @@ export default function AboutScreen() {
 
           <Group>
             <PressableRow
-              onPress={async () => await openLink('https://github.com/CherryHQ/cherry-studio-app/releases/')}>
+              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/releases/')}>
               <XStack className="items-center gap-2.5">
                 <Rss size={20} />
                 <Text>{t('settings.about.releases.title')}</Text>
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://www.cherry-ai.com/')}>
+            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile#readme')}>
               <XStack className="items-center gap-3">
                 <Globe size={20} />
                 <Text>{t('settings.about.website.title')}</Text>
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://github.com/CherryHQ/cherry-studio-app/issues/')}>
+            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues/')}>
               <XStack className="items-center gap-3">
                 <Github size={20} />
                 <Text>{t('settings.about.feedback.title')}</Text>
@@ -93,14 +93,14 @@ export default function AboutScreen() {
               <ArrowUpRight size={16} />
             </PressableRow>
             <PressableRow
-              onPress={async () => await openLink('https://github.com/CherryHQ/cherry-studio/blob/main/LICENSE/')}>
+              onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/blob/main/LICENSE/')}>
               <XStack className="items-center gap-3">
                 <Copyright size={20} />
                 <Text>{t('settings.about.license.title')}</Text>
               </XStack>
               <ArrowUpRight size={16} />
             </PressableRow>
-            <PressableRow onPress={async () => await openLink('https://docs.cherry-ai.com/contact-us/questions/')}>
+            <PressableRow onPress={async () => await openLink('https://github.com/roryhotson-oss/ominicus-mobile/issues')}>
               <XStack className="items-center gap-3">
                 <Mail size={20} />
                 <Text>{t('settings.about.contact.title')}</Text>
