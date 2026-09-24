@@ -7,13 +7,13 @@ const appVersion = packageJson.version
 
 export default {
   expo: {
-    name: 'Cherry Studio',
-    slug: 'cherry-studio',
+    name: 'Ominicus',
+    slug: 'ominicus',
     version: appVersion,
     // orientation: 'portrait', 锁定竖屏
     orientation: 'default',
     icon: './src/assets/images/favicon.png',
-    scheme: 'cherry-studio',
+    scheme: 'ominicus',
     userInterfaceStyle: 'automatic',
     newArchEnabled: true,
     entryPoint: './src/app.js',
@@ -25,14 +25,14 @@ export default {
     },
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.cherry-ai.cherry-studio-app',
+      bundleIdentifier: 'com.ominicus.ominicus-app',
       userInterfaceStyle: 'automatic',
       infoPlist: {
         LSApplicationQueriesSchemes: ['shortcuts'],
-        NSSpeechRecognitionUsageDescription: 'Allow Cherry Studio App to use speech recognition for voice input.',
+        NSSpeechRecognitionUsageDescription: 'Allow Ominicus to use speech recognition for voice input.',
         NSBonjourServices: ['_cherrystudio._tcp', '_http._tcp'],
         NSLocalNetworkUsageDescription:
-          'Cherry Studio needs to access the local network to discover and connect to desktop applications.'
+          'Ominicus needs to access the local network to discover and connect to desktop applications.'
       }
     },
     android: {
@@ -41,7 +41,7 @@ export default {
         backgroundColor: '#F65D5D'
       },
       edgeToEdgeEnabled: true,
-      package: 'com.cherry_ai.cherry_studio_app',
+      package: 'com.ominicus.ominicus_app',
       userInterfaceStyle: 'automatic',
       predictiveBackGestureEnabled: false,
       permissions: ['android.permission.ACCESS_WIFI_STATE', 'android.permission.CHANGE_WIFI_MULTICAST_STATE']
@@ -124,32 +124,32 @@ export default {
       [
         'expo-camera',
         {
-          cameraPermission: 'Allow Cherry Studio App to access your camera',
-          // microphonePermission: 'Allow Cherry Studio App to access your microphone',
+          cameraPermission: 'Allow Ominicus to access your camera',
+          // microphonePermission: 'Allow Ominicus to access your microphone',
           recordAudioAndroid: true
         }
       ],
       [
         'expo-media-library',
         {
-          photosPermission: 'Allow Cherry Studio App to save images to your photo library.',
-          savePhotosPermission: 'Allow Cherry Studio App to save images to your photo library.',
+          photosPermission: 'Allow Ominicus to save images to your photo library.',
+          savePhotosPermission: 'Allow Ominicus to save images to your photo library.',
           isAccessMediaLocationEnabled: true
         }
       ],
       [
         'expo-calendar',
         {
-          calendarPermission: 'Allow Cherry Studio App to access your calendar.',
-          remindersPermission: 'Allow Cherry Studio App to access your reminders.'
+          calendarPermission: 'Allow Ominicus to access your calendar.',
+          remindersPermission: 'Allow Ominicus to access your reminders.'
         }
       ],
       ['react-native-compressor'],
       [
         'expo-speech-recognition',
         {
-          microphonePermission: 'Allow Cherry Studio App to use your microphone for voice input.',
-          speechRecognitionPermission: 'Allow Cherry Studio App to use speech recognition.'
+          microphonePermission: 'Allow Ominicus to use your microphone for voice input.',
+          speechRecognitionPermission: 'Allow Ominicus to use speech recognition.'
         }
       ],
       [

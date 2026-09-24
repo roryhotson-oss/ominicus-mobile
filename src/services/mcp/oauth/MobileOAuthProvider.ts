@@ -218,7 +218,7 @@ async function exchangeCodeForTokens(
 }
 
 const STORAGE_PREFIX = 'mcp_oauth_'
-const REDIRECT_URL = 'cherry-studio://oauth/callback'
+const REDIRECT_URL = 'ominicus://oauth/callback'
 
 /**
  * Mobile OAuth Provider for MCP servers
@@ -275,7 +275,7 @@ export class MobileOAuthProvider implements OAuthClientProvider {
       token_endpoint_auth_method: 'none',
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],
-      client_name: 'Cherry Studio App'
+      client_name: 'Ominicus'
     } as OAuthClientMetadata
   }
 

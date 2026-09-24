@@ -112,7 +112,7 @@
       "think": "思考中，{{seconds}}秒",
       "think_done": "已深度思考 {{seconds}} 秒",
       "think_expand": "點擊讀懂我的心",
-      "title": "歡迎使用 Cherry Studio!",
+      "title": "歡迎使用 Ominicus!",
       "topics": {
         "list": "清單",
         "search": {
@@ -128,8 +128,6 @@
       "camera": "相機",
       "cancel": "取消",
       "check": "開始檢查",
-      "cherry_studio": "Cherry Studio",
-      "cherry_studio_description": "強大的 AI 生產力助手",
       "clear_all": "清除全部",
       "close": "關閉",
       "confirm": "確認",
@@ -158,6 +156,8 @@
       "name": "名稱",
       "ok": "確定",
       "older": "較舊",
+      "ominicus": "Ominicus",
+      "ominicus_description": "強大的 AI 生產力助手",
       "others": "其他人",
       "parameters": "參數",
       "photo": "相片",
@@ -173,7 +173,7 @@
       "see_all": "查看全部",
       "select_all": "全選",
       "source": "來源",
-      "start": "開始使用Cherry Studio App 🎉",
+      "start": "開始使用 Ominicus App 🎉",
       "stop": "停止",
       "this_week": "本週",
       "today": "今天",
@@ -1053,7 +1053,7 @@
       "error": "語音識別出錯",
       "not_available": "語音識別不可用",
       "permission_denied": "麥克風權限被拒絕",
-      "permission_denied_message": "請在設定中允許 Cherry Studio 存取麥克風",
+      "permission_denied_message": "請在設定中允許 Ominicus 存取麥克風",
       "start": "開始語音輸入",
       "stop": "停止語音輸入"
     }

@@ -131,7 +131,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
             className="h-12 w-12 rounded-full"
             source={avatar ? { uri: avatar } : require('@/assets/images/favicon.png')}
           />
-          <Text className="text-base">{userName || t('common.cherry_studio')}</Text>
+          <Text className="text-base">{userName || t('common.ominicus')}</Text>
         </PressableRow>
         <IconButton icon={<Settings size={24} />} onPress={handleNavigateSettingsScreen} style={{ paddingRight: 16 }} />
       </XStack>

@@ -54,17 +54,17 @@ describe('MobileOAuthProvider', () => {
 
     it('should generate correct redirect URL', () => {
       const provider = new MobileOAuthProvider('test-hash')
-      expect(provider.redirectUrl).toBe('cherry-studio://oauth/callback')
+      expect(provider.redirectUrl).toBe('ominicus://oauth/callback')
     })
 
     it('should return correct client metadata', () => {
       const provider = new MobileOAuthProvider('test-hash')
       const metadata = provider.clientMetadata
 
-      expect(metadata.redirect_uris).toContain('cherry-studio://oauth/callback')
+      expect(metadata.redirect_uris).toContain('ominicus://oauth/callback')
       expect(metadata.token_endpoint_auth_method).toBe('none')
       expect(metadata.grant_types).toContain('authorization_code')
-      expect(metadata.client_name).toBe('Cherry Studio App')
+      expect(metadata.client_name).toBe('Ominicus')
     })
   })
 
@@ -264,13 +264,13 @@ describe('MobileOAuthProvider', () => {
       const mockOpenAuth = WebBrowser.openAuthSessionAsync as jest.Mock
       mockOpenAuth.mockResolvedValue({
         type: 'success',
-        url: 'cherry-studio://oauth/callback?code=auth-code&state=valid-state'
+        url: 'ominicus://oauth/callback?code=auth-code&state=valid-state'
       })
 
       const authUrl = new URL('https://auth.example.com/authorize?state=valid-state')
       await provider.redirectToAuthorization(authUrl)
 
-      expect(mockOpenAuth).toHaveBeenCalledWith(authUrl.toString(), 'cherry-studio://oauth/callback')
+      expect(mockOpenAuth).toHaveBeenCalledWith(authUrl.toString(), 'ominicus://oauth/callback')
     })
 
     it('should throw error when OAuth is cancelled', async () => {
@@ -291,7 +291,7 @@ describe('MobileOAuthProvider', () => {
       const mockOpenAuth = WebBrowser.openAuthSessionAsync as jest.Mock
       mockOpenAuth.mockResolvedValue({
         type: 'success',
-        url: 'cherry-studio://oauth/callback?code=auth-code&state=wrong-state'
+        url: 'ominicus://oauth/callback?code=auth-code&state=wrong-state'
       })
 
       await expect(provider.redirectToAuthorization(new URL('https://auth.example.com/authorize'))).rejects.toThrow(
@@ -306,7 +306,7 @@ describe('MobileOAuthProvider', () => {
       const mockOpenAuth = WebBrowser.openAuthSessionAsync as jest.Mock
       mockOpenAuth.mockResolvedValue({
         type: 'success',
-        url: 'cherry-studio://oauth/callback?error=access_denied&error_description=User+denied&state=valid-state'
+        url: 'ominicus://oauth/callback?error=access_denied&error_description=User+denied&state=valid-state'
       })
 
       await expect(provider.redirectToAuthorization(new URL('https://auth.example.com/authorize'))).rejects.toThrow(
@@ -321,7 +321,7 @@ describe('MobileOAuthProvider', () => {
       const mockOpenAuth = WebBrowser.openAuthSessionAsync as jest.Mock
       mockOpenAuth.mockResolvedValue({
         type: 'success',
-        url: 'cherry-studio://oauth/callback?state=valid-state'
+        url: 'ominicus://oauth/callback?state=valid-state'
       })
 
       await expect(provider.redirectToAuthorization(new URL('https://auth.example.com/authorize'))).rejects.toThrow(
