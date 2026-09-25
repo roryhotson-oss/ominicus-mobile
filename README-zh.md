@@ -6,9 +6,22 @@
 
 <div align="center">
 
-**[关于本分支](#-关于本分支)** | **[快速开始](#-快速开始)** | **[功能特性](#-功能特性)** | **[参与贡献](#-参与贡献)** | **[路线图](#-路线图)**
+[![CI](https://github.com/roryhotson-oss/ominicus-mobile/actions/workflows/pr-ci.yml/badge.svg?branch=main)](https://github.com/roryhotson-oss/ominicus-mobile/actions/workflows/pr-ci.yml)
+[![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](./README.md#-许可证)
+[![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-black)](#-快速开始)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+
+**[⬇️ 下载](#-下载)** | **[关于本分支](#-关于本分支)** | **[快速开始](#-快速开始)** | **[功能特性](#-功能特性)** | **[参与贡献](#-参与贡献)** | **[路线图](#-路线图)**
 
 </div>
+
+## ⬇️ 下载
+
+从 **[GitHub Releases](https://github.com/roryhotson-oss/ominicus-mobile/releases)** 获取最新 Android APK —— 每个发布标签都会自动附带构建产物。
+
+- **Android**：从最新 Release 下载 `.apk` 安装（如提示请开启“安装未知应用”）
+- **iOS**：按照[快速开始](#-快速开始)自行构建（TestFlight 计划中 —— 见[路线图](#-路线图)）
+- **自己构建**：跟随[快速开始](#-快速开始)—— Expo 让这一切很简单
 
 ## 🔗 关于本分支
 
@@ -181,20 +194,25 @@ sdk.dir=C\:\\Users\\ USERNAME\\AppData\\Local\\Android\\Sdk
 - 🌍 **改进翻译** —— 语言文件位于 `src/i18n/locales/`，添加 key 后运行 `pnpm sync:i18n`
 - 📝 **完善文档** —— `docs/` 中的架构说明能帮助每位新贡献者
 
+### 代码库导览
+
+| 路径                | 内容                                                               |
+| ------------------- | ------------------------------------------------------------------ |
+| `src/aiCore/`       | 提供商抽象层：OpenAI/Anthropic/Google 客户端、参数构建、消息转换   |
+| `src/services/`     | 业务逻辑：`NoteService`、`MemoryService`、`ConversationService` 等 |
+| `db/`               | Drizzle 表结构、迁移、查询、映射（SQLite）                         |
+| `src/componentsV2/` | 可复用 UI：基础组件、功能组件、图标、布局                          |
+| `src/screens/`      | 页面组件，按功能分组（`notes/`、`assistant/`、`settings/` 等）     |
+| `src/navigators/`   | React Navigation 导航栈与应用抽屉                                  |
+| `src/i18n/locales/` | 翻译（en、zh-CN、zh-TW、ja、ru）                                   |
+
 ### 贡献流程
+
+完整指南见 **[CONTRIBUTING.md](./CONTRIBUTING.md)**（英文）。简版：
 
 1. Fork 仓库并从 `main` 创建分支
 2. 完成修改 —— 保持聚焦；在 `src/**/__tests__/` 下为新服务添加测试
-3. 运行检查：
-
-   ```bash
-   pnpm typecheck     # TypeScript
-   pnpm lint          # ESLint（自动修复）
-   pnpm format        # Prettier
-   pnpm test:ci       # Jest
-   pnpm check:i18n    # 翻译完整性
-   ```
-
+3. 运行 `pnpm typecheck && pnpm lint && pnpm test:ci && pnpm check:i18n`
 4. 提交 Pull Request，说明改动内容和验证方式
 
 > 提示：[功能路线图](./docs/ominicus-feature-roadmap.md) 将桌面版 Cherry Studio / Newelle 的功能映射到本代码库并附带具体实现说明 —— 是寻找范围明确任务的最佳去处。
