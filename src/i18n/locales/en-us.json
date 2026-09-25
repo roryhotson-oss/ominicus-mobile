@@ -489,6 +489,19 @@
         "websearch": "WebSearch"
       }
     },
+    "notes": {
+      "content_placeholder": "Write anything — it saves automatically when you leave.",
+      "delete": {
+        "description": "Delete \"{{title}}\"? This cannot be undone.",
+        "title": "Delete Note"
+      },
+      "edit_title": "Edit Note",
+      "empty": "No notes yet. Tap + to capture a thought.",
+      "new_title": "New Note",
+      "search_placeholder": "Search notes",
+      "title": "Notes",
+      "untitled": "Untitled"
+    },
     "profile": {
       "avatar": "User profile picture",
       "create": "Go to create",

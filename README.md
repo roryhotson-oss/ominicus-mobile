@@ -30,6 +30,7 @@ Newelle (GTK/Linux assistant)  ──inspiration──►  website reading, long
 - 🌐 **Website reading** — `#https://example.com your question` in chat
 - 📌 **Topic pinning** — pinned topics grouped at the top of the list
 - 💰 **Per-topic token usage** — input/output/total from the topic context menu
+- 📝 **Notes** — quick mobile capture: create, search, pin, and delete notes from the drawer; auto-saves as you leave
 - 🛡️ Ominicus branding and app icon
 
 ### Cherry Studio compatibility (unchanged by design)
@@ -62,6 +63,7 @@ See [docs/ominicus-feature-roadmap.md](./docs/ominicus-feature-roadmap.md) for t
 - **Files & images**: attach documents/images to messages (PDF, text, vision models supported)
 - **Message tools**: translation, regenerate/edit, reasoning display, TTS playback, voice input
 - **Topic tools**: auto-generated topic names, per-topic token usage (input/output/total), export to Markdown, rename, pin, multi-select
+- **📝 Notes**: quick capture with auto-derived titles, search, pinning, and auto-save — reachable from the drawer
 
 ### Mobile-first Experience
 
@@ -205,7 +207,7 @@ Highlights from the full [feature roadmap](./docs/ominicus-feature-roadmap.md):
 
 - ✅ Long-term memory — done
 - ✅ Topic pinning, website reading, per-topic token usage — done
-- 🔜 **Notes & Collections** — mobile capture with a Notes tab in the drawer
+- ✅ Notes (mobile capture) — done; voice-to-note is the next step
 - 🔜 **Knowledge base** — attach document collections to topics with citations
 - 🔜 **Quick actions on selected text** — expose Ominicus in the OS share sheet
 - 🔜 **Mermaid & chart rendering** — visual message blocks via WebView
