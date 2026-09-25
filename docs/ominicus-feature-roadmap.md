@@ -20,7 +20,7 @@ This document compares Ominicus (this repo, mobile) against the [Cherry Studio d
 ### Tier 1 — High value, low risk (fits current architecture)
 
 1. **Topic pinning** — ✅ _Implemented._ `isPinned` column, context-menu pin/unpin, Pinned group in the topic list; carried through backup/restore automatically.
-2. **Notes & Collections (mobile capture)** — desktop roadmap item. Start with a simple `notes` Drizzle table + a Notes tab in the drawer. Voice-to-note via the existing speech-recognition integration is a natural mobile-first extension.
+2. **Notes & Collections (mobile capture)** — ✅ _Implemented (first slice)._ `notes` Drizzle table (migration 0018) + `NoteService` (create/update/pin/delete, auto-derived titles) + Notes entry in the drawer with search, pinning, and delete; note editor auto-saves on exit. Voice-to-note via the existing speech-recognition integration is a natural next step.
 3. **Quick actions on selected text** — desktop has a Selection Assistant. On mobile, expose Ominicus in the iOS Share Sheet / Android text-selection menu so users can send selected text to a chosen assistant without opening the app.
 4. **Per-topic token cost summary** — ✅ _Partially implemented._ Token Usage action in the topic context menu aggregates persisted `messages.usage` per topic (input/output/total). Per-model pricing for cost display is still open.
 
@@ -64,6 +64,7 @@ This document compares Ominicus (this repo, mobile) against the [Cherry Studio d
 - **Topic pinning** — see Tier 1 above
 - **Long-term memory (Newelle-style)** — `memory` column on `assistants` (migration `0017`), `src/services/MemoryService.ts` with `rememberTopic()` (topic summary → merged memory note), memory injection into the system prompt in `fetchChatCompletion`, editable **Memory** tab on the assistant detail screen, "Save to Memory" topic context-menu action; i18n in 5 languages; unit tests for prompt assembly
 - **Dynamic context management (token budget)** — `chat.context_token_budget` preference (0 = off by default) with UI in Settings → General, `trimMessagesToTokenBudget()` in `ConversationService` keeps prompts within budget (newest-first greedy fill, last user message always kept); unit tests for the trimming logic
+- **Notes (mobile capture)** — `notes` table (`db/schema/notes.ts`, migration `0018_bored_forgotten_one.sql`) with title/content/isPinned and updated-at indexes; `noteDatabase` facade + `db/queries/notes.queries.ts`; `src/services/NoteService.ts` (create/update/togglePin/delete, `deriveNoteTitle` from first non-empty line, 40-char cap); `NotesScreen` (FlatList, search via `useSearch`, pin toggle, delete confirmation dialog) and `NoteDetailScreen` (auto-save on `beforeRemove`); `NotesStackNavigator` + drawer entry with new `NotesIcon`; i18n in 5 languages; 12 unit tests
 
 ## Desktop Compatibility (must keep)
 

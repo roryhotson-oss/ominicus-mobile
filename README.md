@@ -6,9 +6,22 @@ English | [中文](./README-zh.md)
 
 <div align="center">
 
-**[About This Fork](#-about-this-fork)** | **[Quick Start](#-quick-start)** | **[Features](#-features)** | **[Contributing](#-contributing)** | **[Roadmap](#-roadmap)**
+[![CI](https://github.com/roryhotson-oss/ominicus-mobile/actions/workflows/pr-ci.yml/badge.svg?branch=main)](https://github.com/roryhotson-oss/ominicus-mobile/actions/workflows/pr-ci.yml)
+[![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](./README.md#-license)
+[![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-black)](#-quick-start)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+
+**[⬇️ Download](#-download)** | **[About This Fork](#-about-this-fork)** | **[Quick Start](#-quick-start)** | **[Features](#-features)** | **[Contributing](#-contributing)** | **[Roadmap](#-roadmap)**
 
 </div>
+
+## ⬇️ Download
+
+Grab the latest Android APK from **[GitHub Releases](https://github.com/roryhotson-oss/ominicus-mobile/releases)** — a build is attached to every release tag automatically.
+
+- **Android**: download the `.apk` from the latest release and install it (enable "install unknown apps" if prompted)
+- **iOS**: build from source with the [Quick Start](#-quick-start) steps (a TestFlight track is planned — see the [roadmap](#-roadmap))
+- **Build it yourself**: follow [Quick Start](#-quick-start) — Expo makes it straightforward
 
 ## 🔗 About This Fork
 
@@ -30,6 +43,7 @@ Newelle (GTK/Linux assistant)  ──inspiration──►  website reading, long
 - 🌐 **Website reading** — `#https://example.com your question` in chat
 - 📌 **Topic pinning** — pinned topics grouped at the top of the list
 - 💰 **Per-topic token usage** — input/output/total from the topic context menu
+- 📝 **Notes** — quick mobile capture: create, search, pin, and delete notes from the drawer; auto-saves as you leave
 - 🛡️ Ominicus branding and app icon
 
 ### Cherry Studio compatibility (unchanged by design)
@@ -62,6 +76,7 @@ See [docs/ominicus-feature-roadmap.md](./docs/ominicus-feature-roadmap.md) for t
 - **Files & images**: attach documents/images to messages (PDF, text, vision models supported)
 - **Message tools**: translation, regenerate/edit, reasoning display, TTS playback, voice input
 - **Topic tools**: auto-generated topic names, per-topic token usage (input/output/total), export to Markdown, rename, pin, multi-select
+- **📝 Notes**: quick capture with auto-derived titles, search, pinning, and auto-save — reachable from the drawer
 
 ### Mobile-first Experience
 
@@ -177,24 +192,29 @@ Contributions are welcome — this project is a great place to work on real mobi
 ### Ways to contribute
 
 - 🐛 **Fix bugs** — check [open issues](https://github.com/roryhotson-oss/ominicus-mobile/issues) for `bug` labels
-- ✨ **Build features** — pick something from the [roadmap](#-roadmap) below; Tier 1 items are ideal first contributions
+- ✨ **Build features** — pick an issue labeled [`good first issue`](https://github.com/roryhotson-oss/ominicus-mobile/labels/good%20first%20issue) or something from the [roadmap](#-roadmap)
 - 🌍 **Improve translations** — locale files live in `src/i18n/locales/`, run `pnpm sync:i18n` after adding keys
 - 📝 **Improve docs** — architecture notes in `docs/` help every new contributor
 
+### Codebase map
+
+| Path                | What lives there                                                                          |
+| ------------------- | ----------------------------------------------------------------------------------------- |
+| `src/aiCore/`       | Provider abstraction: OpenAI/Anthropic/Google clients, param building, message conversion |
+| `src/services/`     | Business logic: `NoteService`, `MemoryService`, `ConversationService`, orchestration      |
+| `db/`               | Drizzle schema, migrations, queries, mappers (SQLite)                                     |
+| `src/componentsV2/` | Reusable UI: base components, features, icons, layout                                     |
+| `src/screens/`      | Screen components, grouped by feature (`notes/`, `assistant/`, `settings/`, …)            |
+| `src/navigators/`   | React Navigation stacks and the app drawer                                                |
+| `src/i18n/locales/` | Translations (en, zh-CN, zh-TW, ja, ru)                                                   |
+
 ### Workflow
+
+See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full guide. Short version:
 
 1. Fork the repo and create a branch from `main`
 2. Make your change — keep it focused; add tests for new services under `src/**/__tests__/`
-3. Run the checks:
-
-   ```bash
-   pnpm typecheck     # TypeScript
-   pnpm lint          # ESLint (auto-fixes)
-   pnpm format        # Prettier
-   pnpm test:ci       # Jest
-   pnpm check:i18n    # translation completeness
-   ```
-
+3. Run `pnpm typecheck && pnpm lint && pnpm test:ci && pnpm check:i18n`
 4. Open a pull request describing what changed and how you verified it
 
 > Tip: the [feature roadmap](./docs/ominicus-feature-roadmap.md) maps desktop Cherry Studio / Newelle features onto this codebase with concrete implementation notes — it's the best place to find a well-scoped task.
@@ -205,7 +225,7 @@ Highlights from the full [feature roadmap](./docs/ominicus-feature-roadmap.md):
 
 - ✅ Long-term memory — done
 - ✅ Topic pinning, website reading, per-topic token usage — done
-- 🔜 **Notes & Collections** — mobile capture with a Notes tab in the drawer
+- ✅ Notes (mobile capture) — done; voice-to-note is the next step
 - 🔜 **Knowledge base** — attach document collections to topics with citations
 - 🔜 **Quick actions on selected text** — expose Ominicus in the OS share sheet
 - 🔜 **Mermaid & chart rendering** — visual message blocks via WebView

@@ -7,7 +7,7 @@ import { View } from 'react-native'
 import { IconButton } from '@/componentsV2/base/IconButton'
 import Image from '@/componentsV2/base/Image'
 import Text from '@/componentsV2/base/Text'
-import { MarketIcon, MCPIcon, Settings } from '@/componentsV2/icons'
+import { MarketIcon, MCPIcon, NotesIcon, Settings } from '@/componentsV2/icons'
 import PressableRow from '@/componentsV2/layout/PressableRow'
 import RowRightArrow from '@/componentsV2/layout/Row/RowRightArrow'
 import XStack from '@/componentsV2/layout/XStack'
@@ -45,6 +45,10 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 
   const handleNavigateMcpScreen = () => {
     props.navigation.navigate('Mcp', { screen: 'McpScreen' })
+  }
+
+  const handleNavigateNotesScreen = () => {
+    props.navigation.navigate('Notes', { screen: 'NotesScreen' })
   }
 
   const handleNavigateSettingsScreen = () => {
@@ -104,6 +108,15 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
             <XStack className="items-center justify-center gap-2.5">
               <MCPIcon size={24} />
               <Text className="text-base">{t('mcp.server.title')}</Text>
+            </XStack>
+            <RowRightArrow />
+          </PressableRow>
+          <PressableRow
+            className="flex-row items-center justify-between rounded-lg px-2.5 py-2.5"
+            onPress={handleNavigateNotesScreen}>
+            <XStack className="items-center justify-center gap-2.5">
+              <NotesIcon size={24} />
+              <Text className="text-base">{t('notes.title')}</Text>
             </XStack>
             <RowRightArrow />
           </PressableRow>

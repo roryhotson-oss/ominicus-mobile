@@ -6,6 +6,7 @@ import type { AssistantMarketStackParamList } from '@/navigators/AssistantMarket
 import type { AssistantStackParamList } from '@/navigators/AssistantStackNavigator'
 import type { HomeStackParamList } from '@/navigators/HomeStackNavigator'
 import type { McpStackParamList } from '@/navigators/McpStackNavigator'
+import type { NotesStackParamList } from '@/navigators/NotesStackNavigator'
 import type { AboutStackParamList } from '@/navigators/settings/AboutStackNavigator'
 import type { DataSourcesStackParamList } from '@/navigators/settings/DataSourcesStackNavigator'
 import type { GeneralSettingsStackParamList } from '@/navigators/settings/GeneralSettingsStackNavigator'
@@ -47,6 +48,7 @@ export type AppDrawerParamList = {
     | { screen: 'McpScreen' }
     | { screen: 'McpMarketScreen' }
     | { screen: 'McpDetailScreen'; params: { mcpId: string } }
+  Notes: { screen: 'NotesScreen' } | { screen: 'NoteDetailScreen'; params?: { noteId?: string } } | undefined
 }
 
 // Root Stack Navigator (MainStackNavigator)
@@ -64,6 +66,7 @@ export type HomeNavigationProps = StackNavigationProp<HomeStackParamList>
 export type AssistantNavigationProps = StackNavigationProp<AssistantStackParamList>
 export type AssistantMarketNavigationProps = StackNavigationProp<AssistantMarketStackParamList>
 export type McpNavigationProps = StackNavigationProp<McpStackParamList>
+export type NotesNavigationProps = StackNavigationProp<NotesStackParamList>
 export type SettingsNavigationProps = StackNavigationProp<SettingsStackParamList>
 export type WelcomeNavigationProps = StackNavigationProp<WelcomeStackParamList>
 

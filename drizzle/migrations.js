@@ -19,6 +19,7 @@ import m0014 from './0014_gray_leopardon.sql';
 import m0015 from './0015_furry_old_lace.sql';
 import m0016 from './0016_naive_toro.sql';
 import m0017 from './0017_whole_punisher.sql';
+import m0018 from './0018_bored_forgotten_one.sql';
 
   export default {
     journal,
@@ -40,7 +41,8 @@ m0013,
 m0014,
 m0015,
 m0016,
-m0017
+m0017,
+m0018
     }
   }
   

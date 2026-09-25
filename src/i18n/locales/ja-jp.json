@@ -489,6 +489,19 @@
         "websearch": "ウェブ検索"
       }
     },
+    "notes": {
+      "content_placeholder": "自由に書いてください — 画面を離れると自動保存されます。",
+      "delete": {
+        "description": "「{{title}}」を削除しますか？この操作は取り消せません。",
+        "title": "ノートを削除"
+      },
+      "edit_title": "ノートを編集",
+      "empty": "ノートはまだありません。+ をタップしてメモを残しましょう。",
+      "new_title": "新規ノート",
+      "search_placeholder": "ノートを検索",
+      "title": "ノート",
+      "untitled": "無題"
+    },
     "profile": {
       "avatar": "ユーザープロフィール画像",
       "create": "作成に進む",
