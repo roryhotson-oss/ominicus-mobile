@@ -2,7 +2,7 @@
 
 [English](./README.md) | 中文
 
-**Ominicus** —— 一款强大的 LLM（AI 大语言模型）助手应用，支持 iOS 和 Android，基于 [Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app) 架构构建。
+**Ominicus** —— 一款强大的 LLM（AI 大语言模型）助手应用，支持 iOS 和 Android —— 它将 [Cherry Studio App](https://github.com/CherryHQ/cherry-studio-app) 的移动架构与 [Newelle](https://github.com/qwersyk/Newelle) 的精华思想融合在一起，打造成一个全新的应用。
 
 <div align="center">
 
